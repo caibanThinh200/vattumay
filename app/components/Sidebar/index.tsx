@@ -27,24 +27,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
           </svg>
         </div>
         <div className="py-[18px] border-b border-dashed border-b-bright-gray flex justify-between cursor-pointer">
-          <Link href={"/"}>Chuyển động tuyến tính</Link>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 20 20"
-            fill="none"
-          >
-            <path
-              d="M7.5 4.16675L13.3333 10.0001L7.5 15.8334"
-              stroke="#6B7280"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </div>
-        <div className="py-[18px] border-b border-dashed border-b-bright-gray flex justify-between cursor-pointer">
-          <Link href={"/"}>Chuyển động tuyến tính</Link>
+          <Link href={"/"}>Bộ phần truyền động</Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -61,7 +44,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
           </svg>
         </div>
         <div className="py-[18px] border-b border-dashed border-bright-gray flex justify-between cursor-pointer">
-          <Link href={"/"}>Chuyển động tuyến tính</Link>
+          <Link href={"/"}>Chuyển động quay</Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -78,7 +61,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
           </svg>
         </div>
         <div className="py-[18px] border-b border-dashed border-bright-gray flex justify-between cursor-pointer">
-          <Link href={"/"}>Chuyển động tuyến tính</Link>
+          <Link href={"/"}>Hướng dẫn định vị và cố định</Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -95,7 +78,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
           </svg>
         </div>
         <div className="py-[18px] border-bright-gray flex justify-between cursor-pointer">
-          <Link href={"/"}>Chuyển động tuyến tính</Link>
+          <Link href={"/"}>Kết cấu khung công nghiệp</Link>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -111,6 +94,75 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
             />
           </svg>
         </div>
+        <div className="py-[18px] border-bright-gray flex justify-between cursor-pointer">
+          <Link href={"/"}>Hồ sơ và phụ kiện</Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M7.5 4.16675L13.3333 10.0001L7.5 15.8334"
+              stroke="#6B7280"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div className="py-[18px] border-bright-gray flex justify-between cursor-pointer">
+          <Link href={"/"}>Mô-đun chức năng</Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M7.5 4.16675L13.3333 10.0001L7.5 15.8334"
+              stroke="#6B7280"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div className="py-[18px] border-bright-gray flex justify-between cursor-pointer">
+          <Link href={"/"}>Bộ phận tiêu chuẩn</Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M7.5 4.16675L13.3333 10.0001L7.5 15.8334"
+              stroke="#6B7280"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        <div className="py-[18px] border-bright-gray flex justify-between cursor-pointer">
+          <Link href={"/"}>Vật liệu chức năng</Link>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+          >
+            <path
+              d="M7.5 4.16675L13.3333 10.0001L7.5 15.8334"
+              stroke="#6B7280"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+        
       </div>
     </div>
   );
