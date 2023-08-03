@@ -8,7 +8,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
     <div className="bg-lotion py-[12px] border-2 border-bright-gray fixed left-0 w-full top-0 z-20">
       <div className="container mx-auto flex justify-between gap-10">
         <div className="flex gap-5 w-6/12">
-          <Link href={"/"} className="flex gap-5 items-center w-3/12">
+          <Link href={"/"} className="flex gap-5 items-center w-4/12">
             <Image height={40} width={40} src="/svg/logo.svg" alt="Logo" />
             <h2 className="text-xl font-bold">VATTUMAY</h2>
           </Link>
