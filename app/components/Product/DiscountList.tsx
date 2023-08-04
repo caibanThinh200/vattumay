@@ -10,12 +10,18 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
         <h2 className="font-bold text-xl">Các sản phẩm đang giảm giá</h2>
         <button className="text-begonia">Xem thêm</button>
       </div>
-      <div className="mt-10 grid lg:grid-cols-4 gap-[20px]">
-        <Link href={"/san-pham/sp-1"} className="rounded-xl border overflow-hidden group border-bright-gray flex flex-col relative">
+      <div className="mt-[24px] grid lg:grid-cols-4 gap-[20px]">
+        <Link
+          style={{
+            boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
+          }}
+          href={"/san-pham/sp-1"}
+          className="rounded-xl border overflow-hidden group border-bright-gray flex flex-col relative"
+        >
           <div className="rounded-xl text-white absolute px-[12px] py-[6px] bg-begonia-gradient top-5 right-5 z-10">
             <p>Giảm giá 30%</p>
           </div>
-          <div className="h-[315px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -26,7 +32,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
           </div>
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
-              <svg
+            <svg
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -52,11 +58,17 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
             </svg>
           </div>
         </Link>
-        <Link href={"/san-pham/sp-1"} className="rounded-xl border group overflow-hidden border-bright-gray flex flex-col relative">
+        <Link
+          style={{
+            boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
+          }}
+          href={"/san-pham/sp-1"}
+          className="rounded-xl border group overflow-hidden border-bright-gray flex flex-col relative"
+        >
           <div className="rounded-xl text-white absolute px-[12px] py-[6px] bg-begonia-gradient top-5 right-5 z-10">
             <p>Giảm giá 30%</p>
           </div>
-          <div className="h-[315px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -76,7 +88,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
               </button>
             </div> */}
             <p className="font-bold">Hỗ trợ trực</p>
-              <svg
+            <svg
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -102,11 +114,17 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
             </svg>
           </div>
         </Link>
-        <Link href={"/san-pham/sp-1"} className="rounded-xl border group overflow-hidden border-bright-gray flex flex-col relative">
+        <Link
+          style={{
+            boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
+          }}
+          href={"/san-pham/sp-1"}
+          className="rounded-xl border group overflow-hidden border-bright-gray flex flex-col relative"
+        >
           <div className="rounded-xl text-white absolute px-[12px] py-[6px] bg-begonia-gradient top-5 right-5 z-10">
             <p>Giảm giá 30%</p>
           </div>
-          <div className="h-[315px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -126,7 +144,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
               </button>
             </div> */}
             <p className="font-bold">Hỗ trợ trực</p>
-              <svg
+            <svg
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -152,11 +170,17 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
             </svg>
           </div>
         </Link>
-        <Link href={"/san-pham/sp-1"} className="rounded-xl border overflow-hidden group border-bright-gray flex flex-col relative">
+        <Link
+          style={{
+            boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
+          }}
+          href={"/san-pham/sp-1"}
+          className="rounded-xl border overflow-hidden group border-bright-gray flex flex-col relative"
+        >
           <div className="rounded-xl text-white absolute px-[12px] py-[6px] bg-begonia-gradient top-5 right-5 z-10">
             <p>Giảm giá 30%</p>
           </div>
-          <div className="h-[315px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -167,7 +191,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
           </div>
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
-              <svg
+            <svg
               width="32"
               height="32"
               viewBox="0 0 32 32"

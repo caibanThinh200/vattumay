@@ -10,7 +10,7 @@ const List: React.FC<IListProps> = (props) => {
         <h2 className="font-bold text-xl">Tất cả sản phẩm</h2>
         {/* <button className="text-begonia">Xem thêm</button> */}
       </div>
-      <div className="mt-10 grid lg:grid-cols-4 gap-[20px]">
+      <div className="mt-[24px] grid lg:grid-cols-4 gap-[20px]">
         <Link
           style={{
             boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
@@ -18,7 +18,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -62,7 +62,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -130,7 +130,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -174,7 +174,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -218,7 +218,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -262,7 +262,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -306,7 +306,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}
@@ -350,7 +350,7 @@ const List: React.FC<IListProps> = (props) => {
           href={"/san-pham/sp-1"}
           className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
         >
-          <div className="h-[295px]">
+          <div className="h-[231px]">
             <Image
               className="w-full h-full object-cover"
               src={"/image/product-1.png"}

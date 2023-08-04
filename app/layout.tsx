@@ -21,9 +21,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={clsx(inter.className, "bg-ghost-white pt-[100px]")}>
+      <body className={clsx(inter.className, "bg-ghost-white pt-[70px]")}>
         <Header />
-        <div className="min-h-[50vh] py-10 container mx-auto">{children}</div>
+        <div className="min-h-[50vh] py-10 pt-[34px] container mx-auto">{children}</div>
         <Footer />
       </body>
     </html>
