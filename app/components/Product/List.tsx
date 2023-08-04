@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MouseEvent } from "react";
 
 interface IListProps {
-  handlePurchaseProduct: (e: MouseEvent<SVGSVGElement, MouseEvent>) => void;
+  handlePurchaseProduct: (e: any) => void;
 }
 
 const List: React.FC<IListProps> = (props) => {
