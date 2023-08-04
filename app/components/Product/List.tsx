@@ -1,7 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MouseEvent } from "react";
 
-interface IListProps {}
+interface IListProps {
+  handlePurchaseProduct: (e: MouseEvent<SVGSVGElement, MouseEvent>) => void;
+}
 
 const List: React.FC<IListProps> = (props) => {
   return (
@@ -30,6 +33,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -74,6 +78,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -142,6 +147,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -186,6 +192,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -230,6 +237,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -274,6 +282,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -318,6 +327,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -362,6 +372,7 @@ const List: React.FC<IListProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"

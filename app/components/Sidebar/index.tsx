@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import PopupMenu from "./Popup";
 import { Menu, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import { Fragment } from "react";
@@ -56,6 +55,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                   </div>
                 </Menu.Button>
                 <Transition
+                
                   as={Fragment}
                   enter="transition ease-out duration-100"
                   enterFrom="transform opacity-0 scale-95"

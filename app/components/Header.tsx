@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
+import React from "react";
 
-interface IHeaderProps {}
+interface IHeaderProps {
+  openContact: boolean
+  setOpenContact: React.Dispatch<React.SetStateAction<boolean>>
+}
 
 const Header: React.FC<IHeaderProps> = (props) => {
   return (
@@ -60,7 +64,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
             <span className="text-[#9CA3AF] font-semibold">Cart</span>
           </Link>
           <div>
-            <button className="bg-begonia-gradient px-[24px] py-[10px] font-bold text-white rounded-xl">
+            <button onClick={e => props.setOpenContact(true)} className="bg-begonia-gradient px-[24px] py-[10px] font-bold text-white rounded-xl">
               Liên hệ tư vấn
             </button>
           </div>

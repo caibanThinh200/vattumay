@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 
-interface IListDiscountProductProps {}
+interface IListDiscountProductProps {
+  handlePurchaseProduct: (e: any) => void;
+}
 
 const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
   return (
@@ -33,6 +35,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -89,6 +92,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
             </div> */}
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -145,6 +149,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
             </div> */}
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
@@ -192,6 +197,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
           <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
             <p className="font-bold">Hỗ trợ trực</p>
             <svg
+              onClick={props.handlePurchaseProduct}
               width="32"
               height="32"
               viewBox="0 0 32 32"
