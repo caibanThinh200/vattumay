@@ -21,7 +21,7 @@ export default function Home(props: IHomeProps) {
   const [productInfo, setProductInfo] = useState({});
 
   const handlePurchaseProduct = useCallback(
-    (e) => {
+    (e: any) => {
       e.stopPropagation();
       e.preventDefault();
       setOpenContact(true);
