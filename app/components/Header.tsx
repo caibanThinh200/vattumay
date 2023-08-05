@@ -9,7 +9,7 @@ interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = (props) => {
   return (
-    <div className="bg-lotion py-[12px] border-2 border-bright-gray fixed left-0 w-full top-0 z-20">
+    <div className="bg-lotion py-[12px] border-2 border-bright-gray fixed left-0 w-full top-0 z-40">
       <div className="container mx-auto flex justify-between gap-10">
         <div className="flex gap-5 w-6/12">
           <Link href={"/"} className="flex gap-5 items-center w-4/12">

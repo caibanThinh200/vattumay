@@ -4,10 +4,13 @@ import Image from "next/image";
 import Slider from "react-slick";
 import "./product-info.scss";
 import Select from "react-select";
+import { Listbox } from "@headlessui/react";
 
-interface IProductInfoProps {}
+interface IProductInfoProps {
+  handleOpenContact: () => void;
+}
 
-const ProductInfo: React.FC<IProductInfoProps> = (props) => {
+const ProductInfo: React.FC<IProductInfoProps> = ({handleOpenContact}) => {
   const settings = {
     // dots: true,
     infinite: true,
@@ -96,7 +99,7 @@ const ProductInfo: React.FC<IProductInfoProps> = (props) => {
             <h1 className="text-[32px] font-bold">
               Đai định thời răng hình thang MXL/XL/L/H Chính xác/Tiết kiệm
             </h1>
-            <p className="bg-begonia-gradient text-[14px] bg-clip-text flex gap-2 items-center">
+            <p className="bg-begonia-gradient text-begonia text-[14px] bg-clip-text flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="16"
@@ -147,27 +150,108 @@ const ProductInfo: React.FC<IProductInfoProps> = (props) => {
           <div className="flex flex-col gap-[24px]">
             <div className="flex gap-4 items-center">
               <p className="font-bold">Chọn mã số</p>
-              <Select className="rounded-xl" />
+              <Listbox>
+                <Listbox.Button className="rounded-xl py-[13px] px-[15px] bg-anti-flash-white border flex gap-4 justify-between">
+                  <span className="font-bold text-begonia line-clamp-1">
+                    086HJJ
+                  </span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M19 9L12 16L5 9"
+                      stroke="#6B7280"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </Listbox.Button>
+              </Listbox>
             </div>
             <div>
-              <p className="font-bold">Chọn mã số</p>
-              <Select className="rounded-xl w-6/12 mt-2" />
+              <p className="font-bold">Lựa chọn thông số</p>
+              <Listbox>
+                <Listbox.Button className="rounded-xl py-[13px] px-[15px] bg-anti-flash-white border flex gap-4 justify-between w-6/12 mt-2">
+                  <span className="line-clamp-1">Số phần dây đai (cao độ)</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M19 9L12 16L5 9"
+                      stroke="#6B7280"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </Listbox.Button>
+              </Listbox>
             </div>
             <div>
               <p className="font-bold">Cấu hình sản phẩm</p>
               <div className="flex gap-4 mt-2">
-                <Select className="rounded-xl lg:w-8/12" />
-                <Select className="rounded-xl lg:w-4/12" />
+                <Listbox>
+                  <Listbox.Button className="rounded-xl py-[13px] px-[15px] border flex gap-4 justify-between bg-anti-flash-white lg:w-8/12">
+                    <span className="line-clamp-1">
+                      Chiều rồng vành đai danh nghĩa{" "}
+                    </span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M19 9L12 16L5 9"
+                        stroke="#6B7280"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Listbox.Button>
+                </Listbox>
+                <Listbox>
+                  <Listbox.Button className="rounded-xl py-[13px] px-[15px] border flex gap-4 justify-between bg-anti-flash-white lg:w-4/12">
+                    <span className="line-clamp-1">Số răng bánh răng</span>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
+                      <path
+                        d="M19 9L12 16L5 9"
+                        stroke="#6B7280"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </Listbox.Button>
+                </Listbox>
               </div>
             </div>
           </div>
         </div>
-        <div className="p-[16px] bg-anti-flash-white flex items-center gap-[32px]">
-          <div className="w-3/12">
-            <input type="number" className="w-full rounded-xl p-[8px]" />
+        <div className="p-[16px] bg-anti-flash-white flex justify-center items-center gap-[32px]">
+          <div className="lg:w-3/12 bg-white rounded-md border border-[#D1D5DB] overflow-hidden items-center grid grid-cols-3 h-fit py-[10px]">
+            <button>+</button>
+            <p className="text-center">1</p>
+            <button>-</button>
           </div>
           <div className="w-6/12">
-            <button className="text-white bg-begonia-gradient w-full flex justify-center gap-3 rounded-xl py-[10px] px-[24px]">
+            <button
+              onClick={handleOpenContact}
+              className="text-white bg-begonia-gradient w-full flex justify-center gap-3 rounded-xl py-[10px] px-[24px]"
+            >
               Liên hệ báo giá
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +273,7 @@ const ProductInfo: React.FC<IProductInfoProps> = (props) => {
           <div>
             <Image
               alt="zalo"
-              src={"/image/zalo-logo.png"}
+              src={"/image/zalo.png"}
               height={32}
               width={32}
             />

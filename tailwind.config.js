@@ -8,6 +8,7 @@ module.exports = {
   theme: {
     extend: {
       backgroundImage: {
+        "begonia-gradient-blur": "linear-gradient(131deg, rgba(249, 108, 127, 0.10) 0%, rgba(180, 42, 61, 0.1) 100%)",
         "begonia-gradient": "linear-gradient(131deg, #F96C7F 0%, #B42A3D 100%)",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":

@@ -57,7 +57,9 @@ const ContactForm: React.FC<IContactFormProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-black bg-opacity-25" />
+            <div style={{
+              background: "rgba(27, 27, 27, 0.6)"
+            }} className="fixed inset-0" />
           </Transition.Child>
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center text-center py-5">
@@ -134,8 +136,8 @@ const ContactForm: React.FC<IContactFormProps> = ({
                       </div>
                     )}
                     <div>
-                      <label className="font-bold">Tên của bạn/ công ty</label>
-                      <div className="bg-anti-flash-white mt-3 py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
+                      <label className="font-semibold">Tên của bạn/ công ty</label>
+                      <div className="bg-anti-flash-white mt-[8px] py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -168,8 +170,8 @@ const ContactForm: React.FC<IContactFormProps> = ({
                       </div>
                     </div>
                     <div>
-                      <label className="font-bold">Số điện thoại</label>
-                      <div className="bg-anti-flash-white mt-3 py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
+                      <label className="font-semibold">Số điện thoại</label>
+                      <div className="bg-anti-flash-white mt-[8px] py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -196,8 +198,8 @@ const ContactForm: React.FC<IContactFormProps> = ({
                       </div>
                     </div>
                     <div>
-                      <label className="font-bold">Lời nhắn thêm</label>
-                      <div className="bg-anti-flash-white mt-3 py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
+                      <label className="font-semibold">Lời nhắn thêm</label>
+                      <div className="bg-anti-flash-white mt-[8px] py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
                         <div>
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -207,7 +209,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                             fill="none"
                           >
                             <path
-                              d="M2.39052 2.39052C2.14048 2.64057 2 2.97971 2 3.33333V4C2 9.52267 6.47733 14 12 14H12.6667C13.0203 14 13.3594 13.8595 13.6095 13.6095C13.8595 13.3594 14 13.0203 14 12.6667V10.4807C14 10.3407 13.956 10.2043 13.8742 10.0907C13.7923 9.97714 13.6768 9.89223 13.544 9.848L10.5487 8.84933C10.3964 8.79873 10.2311 8.80472 10.0829 8.86619C9.93473 8.92766 9.8137 9.0405 9.742 9.184L8.98867 10.6887C7.35631 9.95112 6.04888 8.64369 5.31133 7.01133L6.816 6.258C6.9595 6.1863 7.07234 6.06527 7.13381 5.9171C7.19528 5.76893 7.20127 5.60356 7.15067 5.45133L6.152 2.456C6.1078 2.3233 6.02299 2.20787 5.90957 2.12603C5.79615 2.0442 5.65986 2.00011 5.52 2H3.33333C2.97971 2 2.64057 2.14048 2.39052 2.39052Z"
+                              d="M5.33333 8.00008H5.34M8 8.00008H8.00667M10.6667 8.00008H10.6733M14 8.00008C14 10.9454 11.3133 13.3334 8 13.3334C7.01909 13.3368 6.04986 13.1206 5.16333 12.7007L2 13.3334L2.93 10.8534C2.34133 10.0281 2 9.04941 2 8.00008C2 5.05475 4.68667 2.66675 8 2.66675C11.3133 2.66675 14 5.05475 14 8.00008Z"
                               stroke="#6B7280"
                               stroke-linecap="round"
                               stroke-linejoin="round"
@@ -237,7 +239,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                       <Image
                         className="inline mr-3"
                         alt="zalo"
-                        src={"/image/zalo-logo.png"}
+                        src={"/image/zalo.png"}
                         height={32}
                         width={32}
                       />
@@ -419,7 +421,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                       type="submit"
                       className="bg-begonia-gradient px-[24px] py-[10px] font-bold text-white rounded-xl"
                     >
-                      Gởi thông tin
+                      Đóng
                     </button>
                   </div>
                 </Dialog.Panel>

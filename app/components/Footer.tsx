@@ -76,7 +76,7 @@ const Footer: React.FC<IFooterProps> = (props) => {
             <Image
               className="inline mr-3"
               alt="zalo"
-              src={"/image/zalo-logo.png"}
+              src={"/image/zalo.png"}
               height={32}
               width={32}
             />

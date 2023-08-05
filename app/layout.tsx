@@ -8,6 +8,7 @@ import clsx from "clsx";
 import dynamic from "next/dynamic";
 import React, { JSXElementConstructor, ReactElement, useState } from "react";
 import ContactForm from "./components/Form";
+import FloatContact from "./components/FloatContact";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
 const Header = dynamic(() => import("./components/Header"));
@@ -34,7 +35,9 @@ export default function RootLayout({
               openContact,
               setOpenContact,
             } as any)}
+          <FloatContact />
         </div>
+
         <ContactForm modalOpen={openContact} setModalOpen={setOpenContact} />
         <Footer />
       </body>
