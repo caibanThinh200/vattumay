@@ -26,8 +26,16 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
 
   return (
     <div className="bg-lotion z-20 border border-bright-gray rounded-xl sticky top-[100px]">
-      <div className="py-[18px] px-[24px] border-b border-bright-gray">
+      <div className="py-[18px] px-[24px] border-b border-bright-gray flex justify-between items-center">
         <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
+        <Link href={"/danh-muc"} className="bg-begonia-gradient p-2 rounded-full">
+          <Image
+            src={"/svg/arrow-narrow-right.svg"}
+            width={20}
+            height={20}
+            alt="arrow"
+          />
+        </Link>
       </div>
       <div className="px-[24px]">
         <Menu>

@@ -40,7 +40,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
       <Transition appear show={modalOpen} as={"div"}>
         <Dialog
           as="div"
-          className="relative z-30"
+          className="relative z-40"
           onClick={() => {
             setModalOpen(false);
           }}
@@ -283,7 +283,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
       <Transition appear show={submitSuccess} as={"div"}>
         <Dialog
           as="div"
-          className="relative z-30"
+          className="relative z-40"
           onClick={() => {
             setSubmitSuccess(false);
           }}

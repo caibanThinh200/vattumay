@@ -66,7 +66,7 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
         <div
           className="border-2 bg-white border-begonia p-[12px] rounded-xl flex items-center w-full gap-3"
           style={{
-            boxShadow: "0px 0px 10px 0px rgba(231, 91, 111, 0.15)",
+            boxShadow: isOpen ? "0px 0px 10px 0px rgba(231, 91, 111, 0.15)" : "none",
           }}
         >
           <Image
