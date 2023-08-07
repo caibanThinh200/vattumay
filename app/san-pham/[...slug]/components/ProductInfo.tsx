@@ -5,12 +5,13 @@ import Slider from "react-slick";
 import "./product-info.scss";
 import Select from "react-select";
 import { Listbox } from "@headlessui/react";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 interface IProductInfoProps {
   handleOpenContact: () => void;
 }
 
-const ProductInfo: React.FC<IProductInfoProps> = ({handleOpenContact}) => {
+const ProductInfo: React.FC<IProductInfoProps> = ({ handleOpenContact }) => {
   const settings = {
     // dots: true,
     infinite: true,
@@ -21,79 +22,91 @@ const ProductInfo: React.FC<IProductInfoProps> = ({handleOpenContact}) => {
   };
 
   return (
-    <div className="flex gap-20">
-      <div className="lg:w-6/12 w-full">
+    <div className="flex gap-[60px]">
+      <div className="lg:w-5/12 w-full">
         <div className="flex flex-col gap-[20px]">
-          <div className="h-[600px] w-full overflow-hidden rounded-xl">
+          <div className="h-[460px] w-full overflow-hidden rounded-xl">
             <Image
-              className="h-full w-full object-cover"
-              width={350}
-              height={600}
+              className="h-full w-full object-cover rounded-xl"
+              width={596}
+              height={460}
               src={"/image/product-2.png"}
               alt="Product 2"
             />
           </div>
           <div>
-            <Slider {...settings}>
-              <div className="h-[130px] rounded-xl overflow-hidden !w-11/12">
-                <Image
-                  className="w-full h-full object-cover"
-                  src={"/image/product-2.png"}
-                  alt="Product 2"
-                  height={130}
-                  width={200}
-                />
-              </div>
-              <div className="h-[130px] rounded-xl overflow-hidden !w-11/12">
-                <Image
-                  className="w-full h-full object-cover"
-                  src={"/image/product-2.png"}
-                  alt="Product 2"
-                  height={130}
-                  width={200}
-                />
-              </div>
-              <div className="h-[130px] rounded-xl overflow-hidden !w-11/12">
-                <Image
-                  className="w-full h-full object-cover"
-                  src={"/image/product-2.png"}
-                  alt="Product 2"
-                  height={130}
-                  width={200}
-                />
-              </div>
-              <div className="h-[130px] rounded-xl overflow-hidden !w-11/12">
-                <Image
-                  className="w-full h-full object-cover"
-                  src={"/image/product-2.png"}
-                  alt="Product 2"
-                  height={130}
-                  width={200}
-                />
-              </div>
-              <div className="h-[130px] rounded-xl overflow-hidden !w-11/12">
-                <Image
-                  className="w-full h-full object-cover"
-                  src={"/image/product-2.png"}
-                  alt="Product 2"
-                  height={130}
-                  width={200}
-                />
-              </div>
-              <div className="h-[130px] rounded-xl overflow-hidden !w-11/12">
-                <Image
-                  className="w-full h-full object-cover"
-                  src={"/image/product-2.png"}
-                  alt="Product 2"
-                  height={130}
-                  width={200}
-                />
-              </div>
-            </Slider>
+            <Swiper slidesPerView={3} spaceBetween={10}>
+              <SwiperSlide>
+                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
+                  <Image
+                    className="w-full h-full object-cover"
+                    src={"/image/product-2.png"}
+                    alt="Product 2"
+                    height={130}
+                    width={200}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
+                  <Image
+                    className="w-full h-full object-cover"
+                    src={"/image/product-2.png"}
+                    alt="Product 2"
+                    height={130}
+                    width={200}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
+                  <Image
+                    className="w-full h-full object-cover"
+                    src={"/image/product-2.png"}
+                    alt="Product 2"
+                    height={130}
+                    width={200}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
+                  <Image
+                    className="w-full h-full object-cover"
+                    src={"/image/product-2.png"}
+                    alt="Product 2"
+                    height={130}
+                    width={200}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
+                  <Image
+                    className="w-full h-full object-cover"
+                    src={"/image/product-2.png"}
+                    alt="Product 2"
+                    height={130}
+                    width={200}
+                  />
+                </div>
+              </SwiperSlide>
+              <SwiperSlide>
+                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
+                  <Image
+                    className="w-full h-full object-cover"
+                    src={"/image/product-2.png"}
+                    alt="Product 2"
+                    height={130}
+                    width={200}
+                  />
+                </div>
+              </SwiperSlide>
+            </Swiper>
           </div>
         </div>
       </div>
-      <div className="lg:w-6/12 w-full flex flex-col justify-between">
+      <div className="lg:w-7/12 w-full flex flex-col justify-between">
         <div className="flex flex-col gap-[36px]">
           <div>
             <h1 className="text-[32px] font-bold">
@@ -271,12 +284,7 @@ const ProductInfo: React.FC<IProductInfoProps> = ({handleOpenContact}) => {
             </button>
           </div>
           <div>
-            <Image
-              alt="zalo"
-              src={"/image/zalo.png"}
-              height={32}
-              width={32}
-            />
+            <Image alt="zalo" src={"/image/zalo.png"} height={32} width={32} />
           </div>
         </div>
       </div>
