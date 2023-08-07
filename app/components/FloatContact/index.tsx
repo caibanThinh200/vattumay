@@ -12,15 +12,13 @@ import {
 interface IFloatContactProps {}
 
 const FloatContact: React.FC<IFloatContactProps> = (props) => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      (
-        overlayRef.current as HTMLDivElement
-      ).style.height = `${overlayRef.current?.scrollHeight}px`;
-    }
+    (overlayRef.current as HTMLDivElement).style.height = !isOpen
+      ? "0px"
+      : `${overlayRef.current?.scrollHeight}px` || "0px";
   }, [isOpen]);
 
   const handleOpenContact = useCallback(
@@ -76,9 +74,7 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
           </defs>
         </svg>
       </div>
-      <div
-        className="flex flex-col gap-2"
-      >
+      <div className="flex flex-col gap-2">
         <div
           className="border-2 bg-white border-begonia p-[12px] rounded-xl flex gap-3 w-full items-center"
           style={{
@@ -93,7 +89,10 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
           />
           <p className="font-bold">0858 5848 3821</p>
         </div>
-        <div ref={overlayRef} className="flex flex-col gap-2 transition-all duration-300">
+        <div
+          ref={overlayRef}
+          className="flex flex-col gap-2 transition-all duration-300"
+        >
           <div
             className="border-2 bg-white border-begonia p-[12px] rounded-xl flex items-center w-full gap-3"
             style={{

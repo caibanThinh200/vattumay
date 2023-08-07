@@ -41,7 +41,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
         <Menu>
           {({ open }) => (
             <div>
-              {CATEGORIES.map((menuItem) => (
+              {CATEGORIES.map((menuItem, index) => (
                 <div
                   onMouseEnter={(e) => handleMouseEnter(menuItem.id)}
                   onMouseLeave={handleMouseLeave}
@@ -90,10 +90,11 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                       onMouseEnter={(e) => handleMouseEnter(menuItem.id)}
                       onMouseLeave={handleMouseLeave}
                       style={{
+                        top: `-${95 * index}%`,
                         background:
                           "linear-gradient(131deg, #FFBEC7 0%, #C25B69 100%)",
                       }}
-                      className="z-100 absolute left-[calc(100%+30px)] p-[16px] w-full min-w-[600px] -top-2 mt-2 origin-top-right rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
+                      className="z-100 absolute left-[calc(100%+30px)] p-[16px] w-full min-w-[600px] mt-2 origin-top-right rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
                     >
                       <div className="py-1 grid-cols-2 grid gap-x-10 gap-5">
                         <Menu.Item>
