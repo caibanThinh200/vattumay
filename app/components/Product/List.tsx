@@ -22,7 +22,7 @@ const List: React.FC<IListProps> = (props) => {
               boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
             }}
             href={"/san-pham/sp-1"}
-            className="rounded-xl border group transition-all overflow-hidden border-bright-gray flex flex-col relative"
+            className="rounded-xl group transition-all overflow-hidden flex flex-col relative"
           >
             <div className="h-[231px]">
               <Image

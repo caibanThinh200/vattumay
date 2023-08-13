@@ -32,7 +32,7 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
   );
 
   return (
-    <div className="fixed z-30 bottom-16 right-16 flex flex-col items-center gap-2 overflow-hidden">
+    <div className="fixed z-30 bottom-[32px] right-16 flex flex-col items-center gap-2 overflow-hidden">
       <div>
         <svg
           onClick={handleOpenContact}

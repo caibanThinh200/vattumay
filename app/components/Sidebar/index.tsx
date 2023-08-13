@@ -3,32 +3,40 @@
 import Link from "next/link";
 import { Menu, Transition } from "@headlessui/react";
 import clsx from "clsx";
-import { Fragment, MouseEvent, useCallback, useState } from "react";
+import { Fragment, MouseEvent, useCallback, useRef, useState } from "react";
 import Image from "next/image";
-import { CATEGORIES } from "@/app/constant";
+import { CATEGORIES, SUB_CATEGORIES } from "@/app/constant";
 
 interface ISidebarProps {}
 
 const Sidebar: React.FC<ISidebarProps> = (props) => {
   const [activeMenu, setActiveMenu] = useState<string | number>("");
+  let activeTimeout, unactiveTimeout: any;
 
-  const handleMouseEnter = useCallback((key: string | number) => {
-    setTimeout(() => {
-      setActiveMenu(key);
-    }, 200);
-  }, []);
+  const handleMouseEnter = useCallback(
+    (key: string | number) => {
+      clearTimeout(unactiveTimeout);
+      activeTimeout = setTimeout(() => {
+        setActiveMenu(key);
+      }, 200);
+    },
+    [activeTimeout]
+  );
 
   const handleMouseLeave = useCallback(() => {
-    setTimeout(() => {
+    unactiveTimeout = setTimeout(() => {
       setActiveMenu("key");
-    }, 200);
-  }, []);
+    }, 500);
+  }, [unactiveTimeout]);
 
   return (
     <div className="bg-lotion z-20 border border-bright-gray rounded-xl sticky top-[100px]">
       <div className="py-[18px] px-[24px] border-b border-bright-gray flex justify-between items-center">
         <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
-        <Link href={"/danh-muc"} className="bg-begonia-gradient p-2 rounded-full">
+        <Link
+          href={"/danh-muc"}
+          className="bg-begonia-gradient p-2 rounded-full"
+        >
           <Image
             src={"/svg/arrow-narrow-right.svg"}
             width={20}
@@ -37,7 +45,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
           />
         </Link>
       </div>
-      <div className="px-[24px]">
+      <div className="px-[24px] relative">
         <Menu>
           {({ open }) => (
             <div>
@@ -45,7 +53,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                 <div
                   onMouseEnter={(e) => handleMouseEnter(menuItem.id)}
                   onMouseLeave={handleMouseLeave}
-                  className="relative"
+                  // className="relative"
                   key={menuItem.id}
                 >
                   <Menu.Button as="div">
@@ -90,128 +98,35 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                       onMouseEnter={(e) => handleMouseEnter(menuItem.id)}
                       onMouseLeave={handleMouseLeave}
                       style={{
-                        top: `-${95 * index}%`,
                         background:
                           "linear-gradient(131deg, #FFBEC7 0%, #C25B69 100%)",
                       }}
-                      className="z-100 absolute left-[calc(100%+30px)] p-[16px] w-full min-w-[600px] mt-2 origin-top-right rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
+                      className="z-100 absolute left-full top-0 inset-0 p-[16px] h-full w-full min-w-[600px] origin-top-right rounded-xl rounded-l-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
                     >
                       <div className="py-1 grid-cols-2 grid gap-x-10 gap-5">
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Trục
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Sửa chữ vòng
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Ảnh hưởng theo tuyến tính
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Vít bóng: Bộ phận hỗ trợ
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Ống lót không dầu
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Đường ray hướng dẫn tuyến tính
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Vít me hình thang: Thành phần vít me
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Chuỗi kéo
-                            </a>
-                          )}
-                        </Menu.Item>
-                        <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={clsx(
-                                "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                              )}
-                            >
-                              Chuỗi kéo
-                            </a>
-                          )}
-                        </Menu.Item>
+                        {SUB_CATEGORIES.filter(
+                          (item) => item.parentId === menuItem.id
+                        ).map((item) => (
+                          <Menu.Item key={item.id}>
+                            {({ active }) => (
+                              <a
+                                href="#"
+                                className={clsx(
+                                  "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
+                                )}
+                              >
+                                {item.name}
+                              </a>
+                            )}
+                          </Menu.Item>
+                        ))}
                       </div>
                       <div className="h-[260px] w-full mt-5 border rounded-xl border-lotion overflow-hidden">
                         <Image
                           width={530}
                           height={260}
                           className="h-full w-full object-cover"
-                          src={"/image/banner-1.png"}
+                          src={menuItem?.url}
                           alt="image"
                         />
                       </div>

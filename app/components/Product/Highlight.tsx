@@ -6,7 +6,7 @@ const HightLight: React.FC<IHighLightProps> = (props) => {
       <div>
         <h2 className="font-bold text-xl">Tại sao bạn nên chọn chúng tôi</h2>
       </div>
-      <div className="mt-[24px] grid lg:grid-cols-3 gap-10">
+      <div className="mt-[24px] grid lg:grid-cols-3 gap-[20px]">
         <div className="bg-lotion border border-bright-gray rounded-xl flex gap-4 p-[16px]">
           <div>
             <svg
