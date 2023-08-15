@@ -31,7 +31,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
 
   return (
     <div className="bg-lotion z-20 border border-bright-gray rounded-xl sticky top-[100px]">
-      <div className="py-[18px] px-[24px] border-b border-bright-gray flex justify-between items-center">
+      <div className="py-[16px] px-[24px] border-b border-bright-gray flex justify-between items-center">
         <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
         <Link
           href={"/danh-muc"}
@@ -61,7 +61,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                       id="menu-button"
                       aria-expanded="true"
                       aria-haspopup="true"
-                      className="py-[18px] border-b border-dashed border-b-bright-gray group flex hover:text-begonia justify-between cursor-pointer"
+                      className="py-[16px] border-b border-dashed border-b-bright-gray group flex hover:text-begonia justify-between cursor-pointer"
                     >
                       <Link href={"/"}>
                         <span>{menuItem.title}</span>
@@ -97,11 +97,11 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                     <Menu.Items
                       onMouseEnter={(e) => handleMouseEnter(menuItem.id)}
                       onMouseLeave={handleMouseLeave}
-                      style={{
-                        background:
-                          "linear-gradient(131deg, #FFBEC7 0%, #C25B69 100%)",
-                      }}
-                      className="z-100 absolute left-full top-0 inset-0 p-[16px] h-full w-full min-w-[600px] origin-top-right rounded-xl rounded-l-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
+                      // style={{
+                      //   background:
+                      //     "linear-gradient(131deg, #FFBEC7 0%, #C25B69 100%)",
+                      // }}
+                      className="bg-begonia-gradient z-100 absolute left-full top-0 inset-0 p-[16px] h-full w-full min-w-[600px] origin-top-right rounded-xl rounded-l-none shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
                     >
                       <div className="py-1 grid-cols-2 grid gap-x-10 gap-5">
                         {SUB_CATEGORIES.filter(

@@ -71,7 +71,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
           <div className="flex items-center gap-2 rounded-xl border-2 border-bright-gray bg-anti-flash-white p-[5px]">
             <Link
               href={"/"}
-              className="rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]"
+              className="rounded-lg border border-begonia transition-all py-[10px] px-[7px]"
             >
               <svg
                 width="22"
