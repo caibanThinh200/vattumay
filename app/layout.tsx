@@ -3,16 +3,21 @@
 import "./globals.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import { Inter } from "next/font/google";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
-import React, { JSXElementConstructor, ReactElement, useState } from "react";
+import React, {
+  JSXElementConstructor,
+  ReactElement,
+  useEffect,
+  useState,
+} from "react";
 import ContactForm from "./components/Form";
 import FloatContact from "./components/FloatContact";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
 const Header = dynamic(() => import("./components/Header"));
@@ -28,15 +33,25 @@ export default function RootLayout({
     | ReactElement<any, string | JSXElementConstructor<any>>;
 }) {
   const pathname = usePathname();
+  const params = useSearchParams();
   const [openContact, setOpenContact] = useState<boolean>(false);
+  const [paddingTop, setPaddingTop] = useState(80);
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      setPaddingTop(params.has("has_category_bar") ? 174 : 126);
+    } else {
+      setPaddingTop(80);
+    }
+  }, [params, pathname]);
 
   return (
     <html lang="en">
-      <body className={clsx(inter.className, "bg-ghost-white pt-[80px]")}>
+      <body
+        style={{ paddingTop }}
+        className={clsx(inter.className, "bg-ghost-white")}
+      >
         <Header openContact={openContact} setOpenContact={setOpenContact} />
-        {/* <div className="py-[10px] border border-bright-gray">
-          Trang chủ
-        </div> */}
         <div className="min-h-[50vh] py-10 pt-[34px] container mx-auto">
           {React.isValidElement(children) &&
             React.cloneElement(children, {

@@ -12,15 +12,6 @@ interface IProductInfoProps {
 }
 
 const ProductInfo: React.FC<IProductInfoProps> = ({ handleOpenContact }) => {
-  const settings = {
-    // dots: true,
-    infinite: true,
-
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-  };
-
   return (
     <div className="flex gap-[60px]">
       <div className="lg:w-5/12 w-full">

@@ -34,7 +34,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
       <div className="py-[16px] px-[24px] border-b border-bright-gray flex justify-between items-center">
         <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
         <Link
-          href={"/danh-muc"}
+          href={"/"}
           className="bg-begonia-gradient p-2 rounded-full"
         >
           <Image
@@ -63,7 +63,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                       aria-haspopup="true"
                       className="py-[16px] border-b border-dashed border-b-bright-gray group flex hover:text-begonia justify-between cursor-pointer"
                     >
-                      <Link href={"/"}>
+                      <Link href={`/san-pham/${menuItem.id}`}>
                         <span>{menuItem.title}</span>
                       </Link>
                       <svg

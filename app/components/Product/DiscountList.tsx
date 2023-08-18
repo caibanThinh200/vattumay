@@ -20,7 +20,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
             style={{
               boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
             }}
-            href={"/san-pham/sp-1"}
+            href={`/san-pham/${item.rootCategoryId}/${item.categoryId}/1`}
             className="rounded-xl overflow-hidden group flex flex-col relative"
           >
             <div className="rounded-xl text-white absolute px-[12px] py-[6px] bg-begonia-gradient top-5 right-5 z-10">
