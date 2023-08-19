@@ -14,7 +14,7 @@ const FilterBar: React.FC<IFilterBarProps> = (props) => {
       <div className="py-[16px] px-[24px] border-b border-bright-gray flex justify-between items-center">
         <h2 className="font-bold text-xl">Lọc sản phẩm</h2>
         <div>
-            <p className="text-begonia">Clear all</p>
+          <p className="text-begonia">Clear all</p>
         </div>
       </div>
       <div className="px-[24px] relative">
@@ -44,9 +44,8 @@ const FilterBar: React.FC<IFilterBarProps> = (props) => {
                         fill="none"
                       >
                         <path
-                          d="M7.5 4.16675L13.3333 10.0001L7.5 15.8334"
+                          d="M15.8327 7.5L9.99935 13.3333L4.16602 7.5"
                           stroke="#6B7280"
-                          className="group-hover:stroke-begonia"
                           stroke-linecap="round"
                           stroke-linejoin="round"
                         />
