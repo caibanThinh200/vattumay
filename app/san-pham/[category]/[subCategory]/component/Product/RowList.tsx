@@ -29,12 +29,17 @@ const RowList: React.FC<IRowListProps> = (props) => {
                 />
               </td>
               <td className="p-[16px] w-4/12">
-                <Link href={item.url} className="text-[#3056D3]">{item.title}</Link>
+                <Link
+                  href={`${item.categoryId}/${item.slug}`}
+                  className="text-[#3056D3]"
+                >
+                  {item.title}
+                </Link>
               </td>
               <td className="p-[16px] w-3/12">{item.title}</td>
               <td className="p-[16px]">
                 <div className="flex gap-[24px]">
-                  <div className="flex flex-col items-center">
+                  <div onClick={() => window.open(item.url)} className="flex flex-col items-center cursor-pointer">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

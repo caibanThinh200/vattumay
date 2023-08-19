@@ -30,12 +30,15 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
   }, [unactiveTimeout]);
 
   return (
-    <div className="bg-lotion z-20 border border-bright-gray rounded-xl sticky top-[100px]">
-      <div className="py-[16px] px-[24px] border-b border-bright-gray flex justify-between items-center">
+    <div className="bg-lotion overflow-hidden z-20 border border-bright-gray rounded-xl sticky top-[100px]">
+      <div className="py-[16px] px-[24px] border-b border-bright-gray flex justify-between items-center bg-begonia-gradient text-white">
         <h2 className="font-bold text-xl">Danh mục sản phẩm</h2>
         <Link
-          href={"/"}
-          className="bg-begonia-gradient p-2 rounded-full"
+          href={"/danh-muc"}
+          style={{
+            background: "linear-gradient(131deg, #FFBEC7 0%, #C25B69 100%)",
+          }}
+          className="p-2 rounded-full"
         >
           <Image
             src={"/svg/arrow-narrow-right.svg"}

@@ -15,10 +15,10 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   return (
     <div className="container">
       <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-col-2 gap-5">
-        {SUB_CATEGORIES.filter((sub) => sub.parentId == params?.category).map(
+        {CATEGORIES.map(
           (category) => (
             <Link
-              href={`${path}/${category.id}`}
+              href={`/san-pham/${category.id}`}
               key={category.id}
               style={{
                 boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08);",
@@ -35,11 +35,11 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
                   src={"/image/product-1.png"}
                   height={231}
                   width={321}
-                  alt={category.name}
+                  alt={category.title}
                 />
               </div>
               <div className="p-[16px] bg-lotion z-20 group-hover:bg-inherit text-center group-hover:text-white transition-all">
-                <p className="font-bold text-[20px]">{category.name}</p>
+                <p className="font-bold text-[20px]">{category.title}</p>
                 <p className="font-light">6 Product</p>
               </div>
             </Link>
