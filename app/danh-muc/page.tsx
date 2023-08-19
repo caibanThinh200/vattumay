@@ -21,7 +21,7 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
               href={`/san-pham/${category.id}`}
               key={category.id}
               style={{
-                boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08);",
+                boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
               }}
               className="rounded-xl overflow-hidden cursor-pointer hover:bg-begonia-gradient relative group"
             >
