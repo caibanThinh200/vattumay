@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import 'react-loading-skeleton/dist/skeleton.css'
 import { Inter } from "next/font/google";
 import clsx from "clsx";
 import dynamic from "next/dynamic";

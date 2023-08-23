@@ -5,9 +5,9 @@ import HightLight from "./components/Product/Highlight";
 import ListDiscountProduct from "./components/Product/DiscountList";
 import Sidebar from "./components/Sidebar";
 import List from "./components/Product/List";
-import { Metadata } from "next";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import ContactForm from "./components/Form";
+import { getCategoriesData } from "./action";
 
 // export const metadata: Metadata = {
 //   title: "Vật tư máy",
@@ -19,6 +19,13 @@ interface IHomeProps {}
 export default function Home(props: IHomeProps) {
   const [openContact, setOpenContact] = useState<boolean>(false);
   const [productInfo, setProductInfo] = useState({});
+  const [categoryData, setCategoryData] = useState([]);
+
+  useEffect(() => {
+    getCategoriesData().then((res) => {
+      setCategoryData(res.data);
+    });
+  }, []);
 
   const handlePurchaseProduct = useCallback(
     (e: any) => {
@@ -33,7 +40,7 @@ export default function Home(props: IHomeProps) {
   return (
     <div className="flex gap-10">
       <div className="w-3/12">
-        <Sidebar />
+        <Sidebar result={categoryData} />
       </div>
       <div className="w-9/12 flex flex-col gap-[44px]">
         <Banner />

@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  experimental: {
+    serverActions: true,
+  },
   images: {
     remotePatterns: [
         {
@@ -7,6 +10,10 @@ const nextConfig = {
           hostname: 'image.yhdfa.vn',
           port: '',
         },
+        {
+          protocol: 'https',
+          hostname: 'vattumay.000webhostapp.com'
+        }
       ],
   },
 };
