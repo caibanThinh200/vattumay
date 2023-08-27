@@ -110,7 +110,7 @@ const ArchivePagination: React.FC<IArchivePaginationProps> = (props) => {
                     "relative z-10 border border-bright-gray inline-flex items-center px-4 py-2 text-sm font-semibold focus:z-20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600",
                     index === currentPage
                       ? "text-begonia"
-                      : "text-gray-900 ring-1 ring-inset ring-bright-gray hover:bg-gray-50"
+                      : ""
                   )}
                 >
                   {index + 1}

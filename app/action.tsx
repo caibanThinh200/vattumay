@@ -25,10 +25,11 @@ export const getSubCategoriesData = async (filter: any) => {
   // });
 };
 
-export const getAllProducts = async () => {
+export const getAllProducts = async (filter: any) => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product`, {
     params: {
       acf_format: "standard",
+      ...filter
     },
   });
 };

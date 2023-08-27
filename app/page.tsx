@@ -15,15 +15,24 @@ import {
 import { ICategoryField, ISubCategoryField } from "./interface/category";
 import { IProductField } from "./interface/product";
 import ArchivePagination from "./components/Product/Pagination";
+import { useSearchParams } from "next/navigation";
 
 interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
+  const params = useSearchParams();
   const [openContact, setOpenContact] = useState<boolean>(false);
   const [productInfo, setProductInfo] = useState({});
   const [categoryData, setCategoryData] = useState<ICategoryField[]>([]);
   const [productData, setProductData] = useState<IProductField[]>([]);
   const [subCategories, setSubCategories] = useState<ISubCategoryField[]>([]);
+  const [pageIndex, setPageIndex] = useState<{
+    start: number;
+    end: number;
+  }>({
+    start: 0,
+    end: productData.length,
+  });
 
   useEffect(() => {
     getCategoriesData().then((res) => {
@@ -34,10 +43,24 @@ export default function Home(props: IHomeProps) {
       setSubCategories(res.data);
     });
 
-    getAllProducts().then((res) => {
+    getAllProducts({
+      per_page: 100,
+    }).then((res) => {
       setProductData(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    const page = params.get("page")
+      ? parseInt(params.get("page") as string)
+      : 0;
+    if (!isNaN(page)) {
+      setPageIndex({
+        start: (page - 1) * 8,
+        end: page * 8,
+      });
+    }
+  }, [params]);
 
   const handlePurchaseProduct = useCallback(
     (e: any) => {
@@ -62,13 +85,13 @@ export default function Home(props: IHomeProps) {
           handlePurchaseProduct={handlePurchaseProduct}
         />
         <List
-          productData={productData}
+          productData={productData.slice(pageIndex.start, pageIndex.end)}
           handlePurchaseProduct={handlePurchaseProduct}
         />
         <ArchivePagination
-          total={Math.floor(productData.length / 10)}
+          total={Math.floor(productData.length / 8)}
           // currentPage={1}
-          postPerPage={10}
+          postPerPage={8}
         />
         <ContactForm
           modalOpen={openContact}
