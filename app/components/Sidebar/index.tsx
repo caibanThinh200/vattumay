@@ -16,6 +16,7 @@ import Skeleton from "react-loading-skeleton";
 
 interface ISidebarProps {
   result: ICategoryField[];
+  subCategories: ISubCategoryField[];
 }
 
 const Sidebar: React.FC<ISidebarProps> = (props) => {
@@ -121,24 +122,29 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                         className="bg-begonia-gradient z-[100] absolute left-full top-0 inset-0 p-[16px] h-fit w-full min-w-[600px] origin-top-right rounded-xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none text-white"
                       >
                         <div className="py-1 grid-cols-2 grid gap-x-10 gap-5">
-                          {(
-                            menuItem.acf?.sub_categories as ISubCategoryField[]
-                          ).map((item) => (
-                            <Menu.Item key={item.code}>
-                              {({ active }) => (
-                                <Link
-                                  href={
-                                    `/san-pham/${menuItem.id}/${item.code}` as string
-                                  }
-                                  className={clsx(
-                                    "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
-                                  )}
-                                >
-                                  {item.name}
-                                </Link>
-                              )}
-                            </Menu.Item>
-                          ))}
+                          {(props.subCategories as ISubCategoryField[])
+                            .filter(
+                              (subCategory) =>
+                                subCategory.acf?.category === menuItem.id
+                            )
+                            .map((item) => (
+                              <Menu.Item key={item.acf!?.code}>
+                                {({ active }) => (
+                                  <Link
+                                    href={
+                                      `/san-pham/${menuItem.id}/${
+                                        item.acf!?.code
+                                      }` as string
+                                    }
+                                    className={clsx(
+                                      "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
+                                    )}
+                                  >
+                                    {item.title?.rendered}
+                                  </Link>
+                                )}
+                              </Menu.Item>
+                            ))}
                         </div>
                         <div className="h-[260px] w-full mt-5 border rounded-xl border-lotion overflow-hidden">
                           <Image

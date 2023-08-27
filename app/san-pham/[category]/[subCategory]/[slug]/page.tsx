@@ -6,6 +6,7 @@ import ProductDescription from "./components/ProductDescription";
 import ProductInfo from "./components/ProductInfo";
 import ContactForm from "@/app/components/Form";
 import { usePathname, useRouter } from "next/navigation";
+import { getDetailProduct } from "@/app/action";
 
 interface IDetailProduct {
   params: any;
@@ -27,14 +28,22 @@ const DetailProduct: React.FC<IDetailProduct> = (props) => {
     }
   }, [props.params]);
 
+  useEffect(() => {
+    if(props?.params?.slug) {
+      getDetailProduct(props?.params?.slug as string).then(res => {
+        setProductInfo(res.data)
+      })
+    }
+  }, [props?.params])
+
   const handleOpenContact = useCallback(() => {
     setContactForm(true);
-    setProductInfo({ test: 1 });
+    // setProductInfo({ test: 1 });
   }, [contactForm, productInfo]);
 
   return (
     <div className="container flex flex-col gap-20">
-      <ProductInfo handleOpenContact={handleOpenContact} />
+      <ProductInfo result={productInfo} handleOpenContact={handleOpenContact} />
       <ProductDescription />
       <ContactForm
         modalOpen={contactForm}

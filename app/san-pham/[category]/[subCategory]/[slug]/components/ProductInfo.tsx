@@ -6,12 +6,27 @@ import "./product-info.scss";
 import Select from "react-select";
 import { Listbox } from "@headlessui/react";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { IProductField } from "@/app/interface/product";
+import { useCallback, useEffect, useState } from "react";
+import { IImageField } from "@/app/interface/category";
 
 interface IProductInfoProps {
   handleOpenContact: () => void;
+  result: IProductField;
 }
 
-const ProductInfo: React.FC<IProductInfoProps> = ({ handleOpenContact }) => {
+const ProductInfo: React.FC<IProductInfoProps> = ({
+  handleOpenContact,
+  result,
+}) => {
+  const [activeImage, setActiveImage] = useState<string>("");
+
+  useEffect(() => {
+    setActiveImage((result?.acf?.image as IImageField[] || [])[0]?.url as string)
+  }, [result?.acf?.image])
+
+  const handleHoverImage = useCallback((url: string) => {}, [activeImage]);
+
   return (
     <div className="flex gap-[60px]">
       <div className="lg:w-5/12 w-full">
@@ -21,78 +36,28 @@ const ProductInfo: React.FC<IProductInfoProps> = ({ handleOpenContact }) => {
               className="h-full w-full object-cover rounded-xl"
               width={596}
               height={460}
-              src={"/image/product-2.png"}
-              alt="Product 2"
+              src={activeImage}
+              alt="Product image main"
             />
           </div>
           <div>
             <Swiper slidesPerView={3} spaceBetween={10}>
-              <SwiperSlide>
-                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={"/image/product-2.png"}
-                    alt="Product 2"
-                    height={130}
-                    width={200}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={"/image/product-2.png"}
-                    alt="Product 2"
-                    height={130}
-                    width={200}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={"/image/product-2.png"}
-                    alt="Product 2"
-                    height={130}
-                    width={200}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={"/image/product-2.png"}
-                    alt="Product 2"
-                    height={130}
-                    width={200}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={"/image/product-2.png"}
-                    alt="Product 2"
-                    height={130}
-                    width={200}
-                  />
-                </div>
-              </SwiperSlide>
-              <SwiperSlide>
-                <div className="h-[130px] rounded-xl overflow-hidden !w-full">
-                  <Image
-                    className="w-full h-full object-cover"
-                    src={"/image/product-2.png"}
-                    alt="Product 2"
-                    height={130}
-                    width={200}
-                  />
-                </div>
-              </SwiperSlide>
+              {result.acf?.image?.map((img) => (
+                <SwiperSlide key={img.id}>
+                  <div
+                    onMouseEnter={() => handleHoverImage(img.url as string)}
+                    className="h-[130px] rounded-xl overflow-hidden !w-full"
+                  >
+                    <Image
+                      className="w-full h-full object-cover"
+                      src={img.url as string}
+                      alt={img.alt as string}
+                      height={130}
+                      width={200}
+                    />
+                  </div>
+                </SwiperSlide>
+              ))}
             </Swiper>
           </div>
         </div>
@@ -100,9 +65,7 @@ const ProductInfo: React.FC<IProductInfoProps> = ({ handleOpenContact }) => {
       <div className="lg:w-7/12 w-full flex flex-col justify-between">
         <div className="flex flex-col gap-[36px]">
           <div>
-            <h1 className="text-[32px] font-bold">
-              Đai định thời răng hình thang MXL/XL/L/H Chính xác/Tiết kiệm
-            </h1>
+            <h1 className="text-[32px] font-bold">{result?.title?.rendered}</h1>
             <p className="bg-begonia-gradient text-begonia text-[14px] bg-clip-text flex gap-2 items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

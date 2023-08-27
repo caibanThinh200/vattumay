@@ -20,16 +20,14 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   useEffect(() => {
     if (params?.category) {
       axios
-        .get(
-          `${process.env.NEXT_PUBLIC_API_URL}/category/${params?.category}`,
-          {
-            params: {
-              acf_format: "standard",
-            },
-          }
-        )
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/sub_category`, {
+          params: {
+            category: params?.category,
+            acf_format: "standard",
+          },
+        })
         .then((res) => {
-          setSubCategories(res.data?.acf?.sub_categories || []);
+          setSubCategories(res.data || []);
         });
     }
   }, [params]);
@@ -37,11 +35,11 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   return (
     <div className="container">
       {subCategories.length > 0 ? (
-        <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-col-2 gap-5">
+        <div className="grid lg:grid-cols-4 2xl:grid-cols-5 sm:grid-cols-3 grid-col-2 gap-5">
           {subCategories.map((category) => (
             <Link
-              href={`${path}/${category.code}`}
-              key={category.code}
+              href={`${path}/${category?.acf?.code}`}
+              key={category?.acf?.code}
               style={{
                 boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08);",
               }}
@@ -53,15 +51,20 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
                   Xem chi tiết
                 </div>
                 <Image
-                  className="w-full h-full object-cover rounded-xl"
-                  src={category.image?.url as string}
-                  height={231}
-                  width={321}
-                  alt={category.image?.alt || (category?.name as string)}
+                  className="w-full h-full rounded-xl"
+                  src={category?.acf?.image?.url as string}
+                  height={300}
+                  width={400}
+                  alt={
+                    category?.acf?.image?.alt ||
+                    (category?.title?.rendered as string)
+                  }
                 />
               </div>
               <div className="p-[16px] bg-lotion z-20 group-hover:bg-inherit text-center group-hover:text-white transition-all">
-                <p className="font-bold text-[20px]">{category.name}</p>
+                <p className="font-bold text-[20px]">
+                  {category.title?.rendered}
+                </p>
                 <p className="font-light">0 Product</p>
               </div>
             </Link>

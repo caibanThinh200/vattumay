@@ -1,10 +1,13 @@
 import { FAKE_DATA } from "@/app/constant";
+import { IImageField } from "@/app/interface/category";
+import { IProductField } from "@/app/interface/product";
 import Image from "next/image";
 import Link from "next/link";
 import { MouseEvent } from "react";
 
 interface IListProps {
   handlePurchaseProduct: (e: any) => void;
+  productData: IProductField[];
 }
 
 const List: React.FC<IListProps> = (props) => {
@@ -15,20 +18,25 @@ const List: React.FC<IListProps> = (props) => {
         {/* <button className="text-begonia">Xem thêm</button> */}
       </div>
       <div className="mt-[24px] grid lg:grid-cols-4 gap-[20px]">
-        {FAKE_DATA.map((item, index) => (
-          <Link
+        {props.productData.map((item, index) => (
+          <div
             key={index}
             style={{
               boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
             }}
-            href={`/san-pham/${item.rootCategoryId}/${item.categoryId}/1`}
+            onClick={() =>
+              window.open(
+                `/san-pham/${item?.acf?.sub_category?.acf?.category}/${item?.acf?.sub_category?.acf?.code}/${item?.id}`
+              )
+            }
+            // href={`/san-pham/${item?.acf?.sub_category?.acf?.category}/${item?.acf?.sub_category?.acf?.code}/${item?.acf?.code}`}
             className="rounded-xl group transition-all overflow-hidden flex flex-col relative"
           >
             <div className="h-[231px]">
               <Image
                 className="w-full h-full object-cover"
-                src={item.url}
-                alt="Product item"
+                src={(item.acf?.image as IImageField[])[0]?.url as string}
+                alt={(item.acf?.image as IImageField[])[0]?.alt as string}
                 height={315}
                 width={300}
               />
@@ -61,7 +69,7 @@ const List: React.FC<IListProps> = (props) => {
                 />
               </svg>
             </div>
-          </Link>
+          </div>
         ))}
       </div>
     </div>

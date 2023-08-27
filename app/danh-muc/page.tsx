@@ -21,10 +21,10 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
       setCategoryData(res.data);
     });
   }, []);
-  console.log(categoryData)
+
   return (
     <div className="container">
-      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-col-2 gap-5">
+      <div className="grid lg:grid-cols-4 xl:grid-cols-5 sm:grid-cols-3 grid-col-2 gap-5">
         {categoryData.map((category) => (
           <Link
             href={`/san-pham/${category.id}`}
