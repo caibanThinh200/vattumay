@@ -6,7 +6,7 @@ export interface IProductField {
     rendered?: string;
   };
   acf?: {
-    sub_category?: ISubCategoryField;
+    sub_category?: ISubCategoryField & { post_title?: string, ID?: string };
     code?: string;
     image?: IImageField[];
   };

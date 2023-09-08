@@ -4,9 +4,10 @@ import { CATEGORIES, SUB_CATEGORIES } from "@/app/constant";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getCategoriesData } from "../action";
 import { ICategoryField, ISubCategoryField } from "../interface/category";
+import { SettingContext } from "../context/setting";
 
 interface ICategoriesProps {
   params: any;
@@ -14,6 +15,7 @@ interface ICategoriesProps {
 
 const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   const path = usePathname();
+  const settingContext = useContext(SettingContext);
   const [categoryData, setCategoryData] = useState<ICategoryField[]>([]);
 
   useEffect(() => {
@@ -21,6 +23,13 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
       setCategoryData(res.data);
     });
   }, []);
+
+  useEffect(() => {
+    settingContext.updateBreadcrump &&
+      settingContext.updateBreadcrump([
+        { href: "/danh-muc", name: "Danh mục sản phẩm", active: true },
+      ]);
+  }, [categoryData]);
 
   return (
     <div className="container">
@@ -44,14 +53,19 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
                 src={category.acf?.image?.url || ""}
                 height={231}
                 width={321}
-                alt={category.acf?.image?.alt || (category?.title?.rendered as string)}
+                alt={
+                  category.acf?.image?.alt ||
+                  (category?.title?.rendered as string)
+                }
               />
             </div>
             <div className="p-[16px] bg-lotion z-20 group-hover:bg-inherit text-center group-hover:text-white transition-all">
               <p className="font-bold text-[20px]">
                 {category.title?.rendered as string}
               </p>
-              <p className="font-light">{category?.acf?.sub_categories?.length} loại danh mục</p>
+              <p className="font-light">
+                {category?.acf?.sub_categories?.length} loại danh mục
+              </p>
             </div>
           </Link>
         ))}

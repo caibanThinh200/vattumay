@@ -1,12 +1,16 @@
+import { IImageField } from "@/app/interface/category";
+import { IProductField } from "@/app/interface/product";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { utils, writeFile } from "xlsx";
+import moment from "moment";
 
 interface IContactFormProps {
   modalOpen: boolean;
   setModalOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  selectedProduct?: any;
+  selectedProduct?: IProductField;
 }
 
 interface IContactFields {
@@ -27,13 +31,35 @@ const ContactForm: React.FC<IContactFormProps> = ({
     formState: { errors },
   } = useForm<IContactFields>();
   const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [quantity, setQuantity] = useState<number>(1);
 
   const onSubmit: SubmitHandler<IContactFields> = (data) => {
     setModalOpen(false);
-    setTimeout(() => {
-      setSubmitSuccess(true);
-    }, 1000);
+    // setTimeout(() => {
+    //   setSubmitSuccess(true);
+    // }, 1000);
+
+    const excelObj = {
+      "hh mm ss dd mm yy": moment().format("hh mm ss DD MM YY"),
+      Tên: data?.name,
+      "Số điện thoại": data?.phone,
+      "Mặt hàng yêu cầu": selectedProduct?.title?.rendered,
+      "Số lượng": quantity,
+      "Ghi chú": data?.message,
+    };
+    const ws = utils.json_to_sheet([excelObj]);
+    const wb = utils.book_new();
+    utils.book_append_sheet(wb, ws, "Data");
+    writeFile(wb, "/book.xlsx");
   };
+
+  const handleIncreament = useCallback(() => {
+    setQuantity(quantity + 1);
+  }, [quantity]);
+
+  const handleDecreament = useCallback(() => {
+    setQuantity(quantity - 1);
+  }, [quantity]);
 
   return (
     <div>
@@ -57,9 +83,12 @@ const ContactForm: React.FC<IContactFormProps> = ({
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div style={{
-              background: "rgba(27, 27, 27, 0.6)"
-            }} className="fixed inset-0" />
+            <div
+              style={{
+                background: "rgba(27, 27, 27, 0.6)",
+              }}
+              className="fixed inset-0"
+            />
           </Transition.Child>
           <div className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center text-center py-5">
@@ -108,35 +137,51 @@ const ContactForm: React.FC<IContactFormProps> = ({
                           Sản phẩm
                         </p>
                         <div className="flex gap-4">
-                          <div className="w-2/12">
+                          <div className="w-3/12">
                             <Image
                               width={44}
                               height={44}
-                              src={"/image/product-1.png"}
-                              alt="product"
+                              src={
+                                ((selectedProduct?.acf
+                                  ?.image as IImageField[]) || [])[0]
+                                  ?.url as string
+                              }
+                              alt={
+                                ((selectedProduct?.acf
+                                  ?.image as IImageField[]) || [])[0]
+                                  ?.alt as string
+                              }
                               className="object-cover rounded-xl w-full h-[44px] "
                             />
                           </div>
                           <div className="flex flex-col gap-2">
                             <p className="line-clamp-1 text-[14px] font-bold overflow-hidden">
-                              30-Degree Trapezoidal Lead Screw Component For
-                              Support
+                              {selectedProduct?.title?.rendered}
                             </p>
                             <p className="text-[#6B7280] text-[12px] font-light">
-                              Type Product
+                              Code
                             </p>
-                            <p className="font-bold text-[#3056D3]">4567679</p>
+                            <p className="font-bold text-[#3056D3]">
+                              {selectedProduct?.acf?.code}
+                            </p>
                           </div>
                           <div className="lg:w-6/12 bg-white rounded-md border border-[#D1D5DB] overflow-hidden items-center grid grid-cols-3 h-fit py-[10px]">
-                            <button>+</button>
-                            <p className="text-center">1</p>
-                            <button>-</button>
+                            <button onClick={handleIncreament}>+</button>
+                            <p className="text-center">{quantity}</p>
+                            <button
+                              disabled={quantity === 1}
+                              onClick={handleDecreament}
+                            >
+                              -
+                            </button>
                           </div>
                         </div>
                       </div>
                     )}
                     <div>
-                      <label className="font-semibold">Tên của bạn/ công ty</label>
+                      <label className="font-semibold">
+                        Tên của bạn/ công ty
+                      </label>
                       <div className="bg-anti-flash-white mt-[8px] py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
                         <div>
                           <svg

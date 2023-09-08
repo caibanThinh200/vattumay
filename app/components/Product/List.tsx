@@ -6,7 +6,10 @@ import Link from "next/link";
 import { MouseEvent } from "react";
 
 interface IListProps {
-  handlePurchaseProduct: (e: any) => void;
+  handlePurchaseProduct: (
+    e: MouseEvent<HTMLOrSVGElement>,
+    productItem: IProductField
+  ) => void;
   productData: IProductField[];
 }
 
@@ -41,10 +44,16 @@ const List: React.FC<IListProps> = (props) => {
                 width={300}
               />
             </div>
-            <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
-              <p className="font-bold">Hỗ trợ trực</p>
+            <div className="p-[14px] group-hover:bg-begonia-gradient gap-3 transition-all group-hover:text-white flex items-center justify-between">
+              <p
+                style={{ wordBreak: "break-word" }}
+                className="w-full font-bold line-clamp-2"
+              >
+                {item.title?.rendered}
+              </p>
               <svg
-                onClick={props.handlePurchaseProduct}
+                className="w-3/12 hidden group-hover:block cursor-pointer"
+                onClick={(e) => props.handlePurchaseProduct(e, item)}
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"

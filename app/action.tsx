@@ -13,6 +13,14 @@ export const getCategoriesData = async () => {
   // });
 };
 
+export const getSingleCategory = async (id: string) => {
+  return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/category/${id}`, {
+    params: {
+      acf_format: "standard",
+    },
+  });
+};
+
 export const getSubCategoriesData = async (filter: any) => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sub_category`, {
     params: {
@@ -25,11 +33,19 @@ export const getSubCategoriesData = async (filter: any) => {
   // });
 };
 
+export const getSingleSubCategory = async (id: string) => {
+  return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/sub_category/${id}`, {
+    params: {
+      acf_format: "standard",
+    },
+  });
+};
+
 export const getAllProducts = async (filter: any) => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product`, {
     params: {
       acf_format: "standard",
-      ...filter
+      ...filter,
     },
   });
 };

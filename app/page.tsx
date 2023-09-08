@@ -5,7 +5,13 @@ import HightLight from "./components/Product/Highlight";
 import ListDiscountProduct from "./components/Product/DiscountList";
 import Sidebar from "./components/Sidebar";
 import List from "./components/Product/List";
-import { useCallback, useEffect, useState } from "react";
+import {
+  MouseEvent,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import ContactForm from "./components/Form";
 import {
   getAllProducts,
@@ -15,14 +21,18 @@ import {
 import { ICategoryField, ISubCategoryField } from "./interface/category";
 import { IProductField } from "./interface/product";
 import ArchivePagination from "./components/Product/Pagination";
-import { useSearchParams } from "next/navigation";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import { SettingContext } from "./context/setting";
 
 interface IHomeProps {}
 
 export default function Home(props: IHomeProps) {
+  const { updateBreadcrump } = useContext(SettingContext);
   const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
   const [openContact, setOpenContact] = useState<boolean>(false);
-  const [productInfo, setProductInfo] = useState({});
+  const [productInfo, setProductInfo] = useState<IProductField>({});
   const [categoryData, setCategoryData] = useState<ICategoryField[]>([]);
   const [productData, setProductData] = useState<IProductField[]>([]);
   const [subCategories, setSubCategories] = useState<ISubCategoryField[]>([]);
@@ -48,26 +58,30 @@ export default function Home(props: IHomeProps) {
     }).then((res) => {
       setProductData(res.data);
     });
+
+    // updateBreadcrump([]);
   }, []);
 
   useEffect(() => {
     const page = params.get("page")
       ? parseInt(params.get("page") as string)
       : 0;
-    if (!isNaN(page)) {
+    if (page && !isNaN(page)) {
       setPageIndex({
         start: (page - 1) * 8,
         end: page * 8,
       });
+    } else {
+      router.push(`${pathname}?page=1`);
     }
-  }, [params]);
+  }, [params, pathname, router]);
 
   const handlePurchaseProduct = useCallback(
-    (e: any) => {
+    (e: MouseEvent<HTMLOrSVGElement>, productItem: IProductField) => {
       e.stopPropagation();
       e.preventDefault();
       setOpenContact(true);
-      setProductInfo({ test: 1 });
+      setProductInfo(productItem);
     },
     [openContact, productInfo]
   );
@@ -89,7 +103,7 @@ export default function Home(props: IHomeProps) {
           handlePurchaseProduct={handlePurchaseProduct}
         />
         <ArchivePagination
-          total={Math.floor(productData.length / 8)}
+          total={productData.length}
           // currentPage={1}
           postPerPage={8}
         />

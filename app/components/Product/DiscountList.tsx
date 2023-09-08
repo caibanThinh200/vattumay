@@ -3,9 +3,13 @@ import { IImageField } from "@/app/interface/category";
 import { IProductField } from "@/app/interface/product";
 import Image from "next/image";
 import Link from "next/link";
+import { MouseEvent } from "react";
 
 interface IListDiscountProductProps {
-  handlePurchaseProduct: (e: any) => void;
+  handlePurchaseProduct: (
+    e: MouseEvent<HTMLOrSVGElement>,
+    productItem: IProductField
+  ) => void;
   productData: IProductField[];
 }
 
@@ -42,10 +46,13 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
                 width={300}
               />
             </div>
-            <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex justify-between">
-              <p className="font-bold">Hỗ trợ trực</p>
+            <div className="p-[16px] group-hover:bg-begonia-gradient transition-all group-hover:text-white flex items-center justify-between">
+              <p className="w-9/12 font-bold line-clamp-3">
+                {item.title?.rendered}
+              </p>
               <svg
-                onClick={props.handlePurchaseProduct}
+                className="w-3/12"
+                onClick={(e) => props.handlePurchaseProduct(e, item)}
                 width="32"
                 height="32"
                 viewBox="0 0 32 32"

@@ -1,6 +1,7 @@
 "use client";
 
 import { CATEGORIES, SUB_CATEGORIES } from "@/app/constant";
+import { useSettingContext } from "@/app/context/setting";
 import { ISubCategoryField } from "@/app/interface/category";
 import axios from "axios";
 import Image from "next/image";
@@ -15,6 +16,7 @@ interface ICategoriesProps {
 
 const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   const path = usePathname();
+  const { updateBreadcrump } = useSettingContext();
   const [subCategories, setSubCategories] = useState<ISubCategoryField[]>([]);
 
   useEffect(() => {
@@ -28,6 +30,25 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
         })
         .then((res) => {
           setSubCategories(res.data || []);
+        });
+      axios
+        .get(
+          `${process.env.NEXT_PUBLIC_API_URL}/category/${params?.category}`,
+          {
+            params: {
+              acf_format: "standard",
+            },
+          }
+        )
+        .then((res) => {
+          updateBreadcrump && updateBreadcrump([
+            { href: "/danh-muc", name: "Danh mục sản phẩm" },
+            {
+              href: `/san-pham/${res.data?.id}`,
+              name: res.data?.title?.rendered,
+              active: true,
+            },
+          ]);
         });
     }
   }, [params]);

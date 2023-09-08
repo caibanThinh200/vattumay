@@ -1,7 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, usePathname } from "next/navigation";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
+import { SettingContext } from "../context/setting";
+import clsx from "clsx";
 
 interface IHeaderProps {
   openContact: boolean;
@@ -9,6 +11,7 @@ interface IHeaderProps {
 }
 
 const Header: React.FC<IHeaderProps> = (props) => {
+  const { breadcrump } = useContext(SettingContext);
   const pathname = usePathname();
   const params = useSearchParams();
   const [showToolbar, setShowToolbar] = useState(false);
@@ -203,10 +206,18 @@ const Header: React.FC<IHeaderProps> = (props) => {
                 </svg>
                 Trang chủ
               </Link>
-              /
+              {/* /
               <Link href={"/category"} className="text-begonia">
                 Danh mục sản phẩm
-              </Link>
+              </Link> */}
+              {breadcrump.map((path) => (
+                <div key={path.name}>
+                  /
+                  <Link href={path.href as string} className={clsx(" ml-3", path.active && "text-begonia")}>
+                    {path.name}
+                  </Link>
+                </div>
+              ))}
             </div>
           </div>
         </div>
