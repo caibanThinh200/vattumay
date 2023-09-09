@@ -68,8 +68,8 @@ export default function Home(props: IHomeProps) {
       : 0;
     if (page && !isNaN(page)) {
       setPageIndex({
-        start: (page - 1) * 8,
-        end: page * 8,
+        start: (page - 1) * 40,
+        end: page * 40,
       });
     } else {
       router.push(`${pathname}?page=1`);
@@ -105,7 +105,7 @@ export default function Home(props: IHomeProps) {
         <ArchivePagination
           total={productData.length}
           // currentPage={1}
-          postPerPage={8}
+          postPerPage={40}
         />
         <ContactForm
           modalOpen={openContact}
