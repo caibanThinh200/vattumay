@@ -16,6 +16,10 @@ const nextConfig = {
         {
           protocol: 'https',
           hostname: 'vattumay.000webhostapp.com'
+        },
+        {
+          protocol: 'https',
+          hostname: 'vattumay.com'
         }
       ],
   },
