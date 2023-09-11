@@ -4,8 +4,9 @@ import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
 import { Fragment, useCallback, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { utils, writeFile } from "xlsx";
+import { utils, writeFile, read } from "xlsx";
 import moment from "moment";
+import axios from "axios";
 
 interface IContactFormProps {
   modalOpen: boolean;
@@ -33,6 +34,12 @@ const ContactForm: React.FC<IContactFormProps> = ({
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [quantity, setQuantity] = useState<number>(1);
 
+  // useEffect(() => {
+  //   axios
+  //     .get(process.env.NEXT_PUBLIC_SHEET_BEST_API as string)
+  //     .then((res) => console.log(res));
+  // }, []);
+
   const onSubmit: SubmitHandler<IContactFields> = (data) => {
     setModalOpen(false);
     // setTimeout(() => {
@@ -47,10 +54,15 @@ const ContactForm: React.FC<IContactFormProps> = ({
       "Số lượng": quantity,
       "Ghi chú": data?.message,
     };
-    const ws = utils.json_to_sheet([excelObj]);
-    const wb = utils.book_new();
-    utils.book_append_sheet(wb, ws, "Data");
-    writeFile(wb, "/book.xlsx");
+    // const ws = utils.json_to_sheet([excelObj]);
+    // const wb = utils.book_new();
+    // utils.book_append_sheet(wb, ws, "Data");
+    // writeFile(wb, "/book.xlsx");
+    axios
+      .post(process.env.NEXT_PUBLIC_SHEET_BEST_API as string, excelObj)
+      .then((res) => {
+        setSubmitSuccess(true);
+      });
   };
 
   const handleIncreament = useCallback(() => {
@@ -166,7 +178,9 @@ const ContactForm: React.FC<IContactFormProps> = ({
                             </p>
                           </div>
                           <div className="lg:w-6/12 bg-white rounded-md border border-[#D1D5DB] overflow-hidden items-center grid grid-cols-3 h-fit py-[10px]">
-                            <button type="button" onClick={handleIncreament}>+</button>
+                            <button type="button" onClick={handleIncreament}>
+                              +
+                            </button>
                             <p className="text-center">{quantity}</p>
                             <button
                               type="button"

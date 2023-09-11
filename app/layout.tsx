@@ -22,6 +22,7 @@ import FloatContact from "./components/FloatContact";
 import { usePathname, useSearchParams } from "next/navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { appWithTranslation } from 'next-i18next';
 import Setting from "./context/setting";
 
 const Header = dynamic(() => import("./components/Header"));
@@ -30,13 +31,11 @@ const Footer = dynamic(() => import("./components/Footer"));
 const inter = Inter({ subsets: ["latin"] });
 const queryClient = new QueryClient();
 
-export default function RootLayout({
+
+
+const RootLayout: React.FC<{children: React.ReactNode}> = ({
   children,
-}: {
-  children:
-    | React.ReactNode
-    | ReactElement<any, string | JSXElementConstructor<any>>;
-}) {
+}) => {
   const pathname = usePathname();
   const params = useSearchParams();
   const [openContact, setOpenContact] = useState<boolean>(false);
@@ -80,3 +79,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+export default RootLayout
+// export default appWithTranslation(RootLayout as any);
