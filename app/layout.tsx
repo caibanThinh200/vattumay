@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
+import "react-loading-skeleton/dist/skeleton.css";
+import "rc-pagination/assets/index.css";
 import { Inter } from "next/font/google";
 import clsx from "clsx";
 import dynamic from "next/dynamic";
@@ -18,20 +20,22 @@ import React, {
 import ContactForm from "./components/Form";
 import FloatContact from "./components/FloatContact";
 import { usePathname, useSearchParams } from "next/navigation";
-// import Header from "./components/Header";
-// import Footer from "./components/Footer";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { ReactQueryDevtools } from "react-query/devtools";
+import { appWithTranslation } from 'next-i18next';
+import Setting from "./context/setting";
+
 const Header = dynamic(() => import("./components/Header"));
 const Footer = dynamic(() => import("./components/Footer"));
 
 const inter = Inter({ subsets: ["latin"] });
+const queryClient = new QueryClient();
 
-export default function RootLayout({
+
+
+const RootLayout: React.FC<{children: React.ReactNode}> = ({
   children,
-}: {
-  children:
-    | React.ReactNode
-    | ReactElement<any, string | JSXElementConstructor<any>>;
-}) {
+}) => {
   const pathname = usePathname();
   const params = useSearchParams();
   const [openContact, setOpenContact] = useState<boolean>(false);
@@ -51,19 +55,30 @@ export default function RootLayout({
         style={{ paddingTop }}
         className={clsx(inter.className, "bg-ghost-white")}
       >
-        <Header openContact={openContact} setOpenContact={setOpenContact} />
-        <div className="min-h-[50vh] py-10 pt-[34px] container mx-auto">
-          {React.isValidElement(children) &&
-            React.cloneElement(children, {
-              openContact,
-              setOpenContact,
-            } as any)}
-          <FloatContact />
-        </div>
+        <Setting>
+          <QueryClientProvider client={queryClient}>
+            <Header openContact={openContact} setOpenContact={setOpenContact} />
+            <div className="min-h-[50vh] py-10 pt-[34px] container mx-auto">
+              {React.isValidElement(children) &&
+                React.cloneElement(children, {
+                  openContact,
+                  setOpenContact,
+                } as any)}
+              <FloatContact />
+            </div>
 
-        <ContactForm modalOpen={openContact} setModalOpen={setOpenContact} />
-        <Footer />
+            <ContactForm
+              modalOpen={openContact}
+              setModalOpen={setOpenContact}
+            />
+            <Footer />
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
+        </Setting>
       </body>
     </html>
   );
 }
+
+export default RootLayout
+// export default appWithTranslation(RootLayout as any);

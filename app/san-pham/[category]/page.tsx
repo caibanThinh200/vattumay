@@ -1,9 +1,14 @@
 "use client";
 
 import { CATEGORIES, SUB_CATEGORIES } from "@/app/constant";
+import { useSettingContext } from "@/app/context/setting";
+import { ISubCategoryField } from "@/app/interface/category";
+import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 
 interface ICategoriesProps {
   params: any;
@@ -11,15 +16,51 @@ interface ICategoriesProps {
 
 const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   const path = usePathname();
+  const { updateBreadcrump } = useSettingContext();
+  const [subCategories, setSubCategories] = useState<ISubCategoryField[]>([]);
+
+  useEffect(() => {
+    if (params?.category) {
+      axios
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/sub_category`, {
+          params: {
+            category: params?.category,
+            acf_format: "standard",
+          },
+        })
+        .then((res) => {
+          setSubCategories(res.data || []);
+        });
+      axios
+        .get(
+          `${process.env.NEXT_PUBLIC_API_URL}/category/${params?.category}`,
+          {
+            params: {
+              acf_format: "standard",
+            },
+          }
+        )
+        .then((res) => {
+          updateBreadcrump && updateBreadcrump([
+            { href: "/danh-muc", name: "Danh mục sản phẩm" },
+            {
+              href: `/san-pham/${res.data?.id}`,
+              name: res.data?.title?.rendered,
+              active: true,
+            },
+          ]);
+        });
+    }
+  }, [params]);
 
   return (
     <div className="container">
-      <div className="grid lg:grid-cols-4 sm:grid-cols-3 grid-col-2 gap-5">
-        {SUB_CATEGORIES.filter((sub) => sub.parentId == params?.category).map(
-          (category) => (
+      {subCategories.length > 0 ? (
+        <div className="grid lg:grid-cols-4 2xl:grid-cols-5 sm:grid-cols-3 grid-col-2 gap-5">
+          {subCategories.map((category) => (
             <Link
-              href={`${path}/${category.id}`}
-              key={category.id}
+              href={`${path}/${category?.acf?.code}`}
+              key={category?.acf?.code}
               style={{
                 boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08);",
               }}
@@ -31,21 +72,33 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
                   Xem chi tiết
                 </div>
                 <Image
-                  className="w-full h-full object-cover rounded-xl"
-                  src={"/image/product-1.png"}
-                  height={231}
-                  width={321}
-                  alt={category.name}
+                  className="w-full h-full rounded-xl"
+                  src={category?.acf?.image?.url as string}
+                  height={300}
+                  width={400}
+                  alt={
+                    category?.acf?.image?.alt ||
+                    (category?.title?.rendered as string)
+                  }
                 />
               </div>
               <div className="p-[16px] bg-lotion z-20 group-hover:bg-inherit text-center group-hover:text-white transition-all">
-                <p className="font-bold text-[20px]">{category.name}</p>
-                <p className="font-light">6 Product</p>
+                <p className="font-bold text-[20px]">
+                  {category.title?.rendered}
+                </p>
+                <p className="font-light">0 Product</p>
               </div>
             </Link>
-          )
-        )}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <div className="flex gap-10 justify-center w-full">
+          <Skeleton height={300} width={220} />
+          <Skeleton height={300} width={220} />
+          <Skeleton height={300} width={220} />
+          <Skeleton height={300} width={220} />
+        </div>
+      )}
     </div>
   );
 };

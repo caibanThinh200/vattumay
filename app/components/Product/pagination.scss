@@ -1,0 +1,27 @@
+.rc-pagination-prev {
+  margin: 0;
+  height: 100%;
+  button {
+    &::after {
+      display: none;
+    }
+  }
+}
+
+.rc-pagination-next {
+    margin: 0;
+    height: 100%;
+    button {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+.rc-pagination-item {
+    margin: 0;
+    background-color: inherit;
+    border: none;
+    height: 100%;
+    font-family: inherit;
+}
