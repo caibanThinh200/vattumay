@@ -24,6 +24,8 @@
     "clsx": "^2.0.0",
     "eslint": "8.46.0",
     "eslint-config-next": "13.4.12",
+    "html-react-parser": "^4.2.2",
+    "js-cookie": "^3.0.5",
     "moment": "^2.29.4",
     "net": "^1.0.2",
     "next": "13.4.12",
@@ -48,6 +50,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "@types/js-cookie": "^3.0.3",
     "@types/react-slick": "^0.23.10"
   }
 }

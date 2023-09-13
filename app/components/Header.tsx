@@ -1,9 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams, usePathname } from "next/navigation";
 import React, { useContext, useEffect, useState } from "react";
 import { SettingContext } from "../context/setting";
 import clsx from "clsx";
+import Cookies from "js-cookie";
 
 interface IHeaderProps {
   openContact: boolean;
@@ -14,12 +17,24 @@ const Header: React.FC<IHeaderProps> = (props) => {
   const { breadcrump } = useContext(SettingContext);
   const pathname = usePathname();
   const params = useSearchParams();
+  const [currentLang, setCurrentLang] = useState("vi");
   const [showToolbar, setShowToolbar] = useState(false);
 
   useEffect(() => {
     const isToolbar = params.has("has_category_bar");
     setShowToolbar(isToolbar);
   }, [params]);
+
+  useEffect(() => {
+    const lang = Cookies.get("lang")?.toLowerCase() || "vi";
+    setCurrentLang(lang);
+  }, []);
+
+  const handleChangeLanguage = (language: string, lang: string) => {
+    Cookies.set("lang", lang);
+    Cookies.set("googtrans", language);
+    window.location.reload();
+  };
 
   return (
     <div className="fixed left-0 w-full top-0 z-40">
@@ -87,8 +102,9 @@ const Header: React.FC<IHeaderProps> = (props) => {
             </div>
             <div className="flex items-center gap-2 rounded-xl border-2 border-bright-gray bg-anti-flash-white p-[5px]">
               <Link
-                href={"/"}
-                className="rounded-lg border border-begonia transition-all py-[10px] px-[7px]"
+                onClick={(e) => handleChangeLanguage("/en/vi", "VI")}
+                href={"#googtrans(vi)"}
+                className={clsx("rounded-lg transition-all py-[10px] px-[7px] hover:border-begonia", currentLang === "vi" && "border-begonia border")}
               >
                 <svg
                   width="22"
@@ -107,8 +123,9 @@ const Header: React.FC<IHeaderProps> = (props) => {
                 </svg>
               </Link>
               <Link
-                href={"/"}
-                className="rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]"
+                onClick={(e) => handleChangeLanguage("/en/en", "EN")}
+                href={`#googtrans(en)`}
+                className={clsx("rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]", currentLang === "en" && "border border-begonia")}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -213,7 +230,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
               {breadcrump.map((path) => (
                 <div key={path.name}>
                   /
-                  <Link href={path.href as string} className={clsx(" ml-3", path.active && "text-begonia")}>
+                  <Link
+                    href={path.href as string}
+                    className={clsx(" ml-3", path.active && "text-begonia")}
+                  >
                     {path.name}
                   </Link>
                 </div>

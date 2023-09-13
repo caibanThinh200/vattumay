@@ -44,6 +44,7 @@ export const getSingleSubCategory = async (id: string) => {
 export const getAllProducts = async (filter: any) => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/product`, {
     params: {
+      orderby: 'modified',
       acf_format: "standard",
       ...filter,
     },

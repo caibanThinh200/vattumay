@@ -3,5 +3,13 @@
 @tailwind utilities;
 
 * {
- scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
+#google_translate_element {
+  display: none;
+}
+
+.skiptranslate {
+  display: none;
 }

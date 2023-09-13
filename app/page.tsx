@@ -85,6 +85,8 @@ export default function Home(props: IHomeProps) {
     },
     [openContact, productInfo]
   );
+  
+  const subCategoryOrder = [''];
 
   return (
     <div className="flex gap-10">

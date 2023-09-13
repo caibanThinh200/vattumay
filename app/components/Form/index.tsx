@@ -7,6 +7,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { utils, writeFile, read } from "xlsx";
 import moment from "moment";
 import axios from "axios";
+import parse from "html-react-parser";
 
 interface IContactFormProps {
   modalOpen: boolean;
@@ -75,6 +76,22 @@ const ContactForm: React.FC<IContactFormProps> = ({
 
   return (
     <div>
+      {/* {parse(`<div className="hidden" data-sheet-best="https://sheet.best/api/sheets/eeea2bed-3b11-46ff-8b1d-b0702b3d6f8c">
+        <div>
+          <h2>{{ Te }}</h2>
+          <div>
+            <span>
+              Price: <b>{{ price }}</b>
+            </span>
+            <span>
+              High: <b>{{ high }}</b>
+            </span>
+            <span>
+              Low: <b>{{ low }}</b>
+            </span>
+          </div>
+        </div>
+      </div>`)} */}
       <Transition appear show={modalOpen} as={"div"}>
         <Dialog
           as="div"
@@ -140,6 +157,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                     </svg>
                   </Dialog.Title>
                   <form
+                    data-sheet-best="https://sheet.best/api/sheets/eeea2bed-3b11-46ff-8b1d-b0702b3d6f8c"
                     onSubmit={handleSubmit(onSubmit)}
                     className="p-[24px] flex flex-col gap-[24px]"
                   >
@@ -278,7 +296,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                         </div>
                         <div className="w-10/12">
                           <textarea
-                            {...register("message", { required: true })}
+                            {...register("message", { required: false })}
                             className="text-auto-metal-saurus bg-inherit w-full outline-none"
                             placeholder="Nhập lời nhắn của bạn muốn gởi cho chúng tôi"
                           />
