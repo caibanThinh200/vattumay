@@ -2,11 +2,16 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useSearchParams, usePathname } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import React, { Fragment, useContext, useEffect, useState } from "react";
 import { SettingContext } from "../context/setting";
+import { Combobox, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import Cookies from "js-cookie";
+import { getAllProducts } from "../action";
+import { IProductField } from "../interface/product";
+import { IImageField } from "../interface/category";
+import { useCallback } from "react";
 
 interface IHeaderProps {
   openContact: boolean;
@@ -15,10 +20,14 @@ interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = (props) => {
   const { breadcrump } = useContext(SettingContext);
+  const router = useRouter();
   const pathname = usePathname();
   const params = useSearchParams();
   const [currentLang, setCurrentLang] = useState("vi");
   const [showToolbar, setShowToolbar] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
+  const [showSearchResult, setShowSearchResult] = useState(false);
+  const [filteredData, setFilteredData] = useState<IProductField[]>([]);
 
   useEffect(() => {
     const isToolbar = params.has("has_category_bar");
@@ -30,23 +39,48 @@ const Header: React.FC<IHeaderProps> = (props) => {
     setCurrentLang(lang);
   }, []);
 
-  const handleChangeLanguage = (language: string, lang: string) => {
+  useEffect(() => {
+    getAllProducts({ search: searchValue, per_page: 5 }).then((res) =>
+      setFilteredData(res.data)
+    );
+  }, [searchValue]);
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
+    let func;
+    clearTimeout(func);
+    func = setTimeout(() => {
+      setSearchValue(event.target.value);
+      setShowSearchResult(!!event.target.value);
+    }, 500);
+  };
+
+  const handleEnterSearch = useCallback(
+    (e: React.KeyboardEvent<HTMLInputElement>) => {
+      if (e.key === "Enter") {
+        setShowSearchResult(false);
+        router.replace(`/search?t=${searchValue}`);
+      }
+    },
+    [router, searchValue]
+  );
+
+  const handleChangeLanguage = useCallback((language: string, lang: string) => {
     Cookies.set("lang", lang);
     Cookies.set("googtrans", language);
     window.location.reload();
-  };
+  }, []);
 
   return (
     <div className="fixed left-0 w-full top-0 z-40">
       <div className="bg-lotion py-[12px] border-2 border-bright-gray">
         <div className="container mx-auto flex justify-between gap-10">
-          <div className="flex gap-5 w-6/12">
+          <div className="flex gap-5 w-7/12">
             <Link href={"/"} className="flex gap-5 items-center w-4/12">
               <Image height={40} width={40} src="/svg/logo.svg" alt="Logo" />
               <h2 className="text-xl font-bold">VATTUMAY</h2>
             </Link>
-            <div className="w-9/12">
-              <div className="bg-anti-flash-white py-[13px] px-[15px] flex gap-5 rounded-xl w-full">
+            <div className="w-9/12 outline-offset-2 outline-1 outline-begonia">
+              <div className="bg-anti-flash-white py-[13px] px-[15px] flex gap-5 rounded-xl w-full relative">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -65,10 +99,63 @@ const Header: React.FC<IHeaderProps> = (props) => {
                   </svg>
                 </div>
                 <div className="w-10/12">
-                  <input
-                    className="text-auto-metal-saurus bg-inherit w-full outline-none"
-                    placeholder=" Nhập sản phẩm bạn muốn tìm kiếm"
-                  />
+                  <Combobox>
+                    <Combobox.Input
+                      onKeyDown={handleEnterSearch}
+                      onChange={handleSearch}
+                      className="text-auto-metal-saurus bg-inherit w-full outline-none"
+                      placeholder=" Nhập sản phẩm bạn muốn tìm kiếm"
+                    />
+                    <Transition
+                      as={Fragment}
+                      show={showSearchResult}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                      // afterLeave={() => setQuery("")}
+                    >
+                      <Combobox.Options className="absolute left-0 p-[24px]  mt-[25px] w-full overflow-auto rounded-xl bg-lotion text-base shadow-lg focus:outline-none sm:text-sm">
+                        <div className="rounded-lg flex flex-col gap-[12px]">
+                          {filteredData?.length > 0 ? (
+                            filteredData?.map((product) => (
+                              <div
+                                onClick={() =>
+                                  window.open(
+                                    `/san-pham/${product?.acf?.sub_category?.acf?.category}/${product?.acf?.sub_category?.acf?.code}/${product?.id}`
+                                  )
+                                }
+                                key={product.id}
+                                className="flex gap-4 items-center rounded-lg p-[12px] bg-anti-flash-white border border-anti-flash-white hover:bg-begonia-gradient hover:text-white transition-all cursor-pointer"
+                              >
+                                <div className="w-[44px]">
+                                  <Image
+                                    width={44}
+                                    height={44}
+                                    src={
+                                      (product.acf?.image as IImageField[])[0]
+                                        ?.url as string
+                                    }
+                                    alt={
+                                      (product.acf?.image as IImageField[])[0]
+                                        ?.alt as string
+                                    }
+                                    className="object-cover rounded-xl w-[44px] h-[44px] "
+                                  />
+                                </div>
+                                <div className="flex flex-col gap-2">
+                                  <p className="line-clamp-1 text-[14px] font-bold overflow-hidden">
+                                    {product.title?.rendered}
+                                  </p>
+                                </div>
+                              </div>
+                            ))
+                          ) : (
+                            <div>Không tìm thấy sản phẩm</div>
+                          )}
+                        </div>
+                      </Combobox.Options>
+                    </Transition>
+                  </Combobox>
                 </div>
               </div>
             </div>
@@ -104,7 +191,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
               <Link
                 onClick={(e) => handleChangeLanguage("/en/vi", "VI")}
                 href={"#googtrans(vi)"}
-                className={clsx("rounded-lg transition-all py-[10px] px-[7px] hover:border-begonia", currentLang === "vi" && "border-begonia border")}
+                className={clsx(
+                  "rounded-lg transition-all py-[10px] px-[7px] hover:border-begonia",
+                  currentLang === "vi" && "border-begonia border"
+                )}
               >
                 <svg
                   width="22"
@@ -125,7 +215,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
               <Link
                 onClick={(e) => handleChangeLanguage("/en/en", "EN")}
                 href={`#googtrans(en)`}
-                className={clsx("rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]", currentLang === "en" && "border border-begonia")}
+                className={clsx(
+                  "rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]",
+                  currentLang === "en" && "border border-begonia"
+                )}
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"

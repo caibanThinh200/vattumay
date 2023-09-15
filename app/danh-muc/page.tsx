@@ -14,7 +14,6 @@ interface ICategoriesProps {
 }
 
 const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
-  const path = usePathname();
   const settingContext = useContext(SettingContext);
   const [categoryData, setCategoryData] = useState<ICategoryField[]>([]);
 

@@ -22,8 +22,10 @@ const ProductInfo: React.FC<IProductInfoProps> = ({
   const [activeImage, setActiveImage] = useState<string>("");
 
   useEffect(() => {
-    setActiveImage((result?.acf?.image as IImageField[] || [])[0]?.url as string)
-  }, [result?.acf?.image])
+    setActiveImage(
+      ((result?.acf?.image as IImageField[]) || [])[0]?.url as string
+    );
+  }, [result?.acf?.image]);
 
   const handleHoverImage = useCallback((url: string) => {}, [activeImage]);
 
@@ -39,26 +41,6 @@ const ProductInfo: React.FC<IProductInfoProps> = ({
               src={activeImage}
               alt="Product image main"
             />
-          </div>
-          <div>
-            <Swiper slidesPerView={3} spaceBetween={10}>
-              {result.acf?.image?.map((img) => (
-                <SwiperSlide key={img.id}>
-                  <div
-                    onMouseEnter={() => handleHoverImage(img.url as string)}
-                    className="h-[130px] rounded-xl overflow-hidden !w-full"
-                  >
-                    <Image
-                      className="w-full h-full object-cover"
-                      src={img.url as string}
-                      alt={img.alt as string}
-                      height={130}
-                      width={200}
-                    />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
           </div>
         </div>
       </div>
@@ -140,6 +122,26 @@ const ProductInfo: React.FC<IProductInfoProps> = ({
               </Listbox>
             </div>
             <div>
+              <Swiper slidesPerView={3} spaceBetween={10}>
+                {result.acf?.image?.map((img) => (
+                  <SwiperSlide key={img.id}>
+                    <div
+                      onMouseEnter={() => handleHoverImage(img.url as string)}
+                      className="h-[130px] rounded-xl overflow-hidden !w-full"
+                    >
+                      <Image
+                        className="w-full h-full object-cover"
+                        src={img.url as string}
+                        alt={img.alt as string}
+                        height={130}
+                        width={200}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </div>
+            {/* <div>
               <p className="font-bold">Lựa chọn thông số</p>
               <Listbox>
                 <Listbox.Button className="rounded-xl py-[13px] px-[15px] bg-anti-flash-white border flex gap-4 justify-between w-6/12 mt-2">
@@ -205,14 +207,14 @@ const ProductInfo: React.FC<IProductInfoProps> = ({
                   </Listbox.Button>
                 </Listbox>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="p-[16px] bg-anti-flash-white flex justify-center items-center gap-[32px]">
+        <div className="p-[16px] bg-anti-flash-white flex justify-center rounded-lg items-center gap-[32px]">
           <div className="lg:w-3/12 bg-white rounded-md border border-[#D1D5DB] overflow-hidden items-center grid grid-cols-3 h-fit py-[10px]">
-            <button>+</button>
-            <p className="text-center">1</p>
             <button>-</button>
+            <p className="text-center">1</p>
+            <button>+</button>
           </div>
           <div className="w-6/12">
             <button
