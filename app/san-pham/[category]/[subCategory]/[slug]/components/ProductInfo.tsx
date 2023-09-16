@@ -102,7 +102,7 @@ const ProductInfo: React.FC<IProductInfoProps> = ({
               <Listbox>
                 <Listbox.Button className="rounded-xl py-[13px] px-[15px] bg-anti-flash-white border flex gap-4 justify-between">
                   <span className="font-bold text-begonia line-clamp-1">
-                    086HJJ
+                    {result?.acf?.code}
                   </span>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

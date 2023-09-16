@@ -30,6 +30,17 @@ const Header: React.FC<IHeaderProps> = (props) => {
   const [filteredData, setFilteredData] = useState<IProductField[]>([]);
 
   useEffect(() => {
+    window.addEventListener("click", () => {
+      console.log(111);
+      setShowSearchResult(false);
+    });
+    return () =>
+      window.removeEventListener("click", () => {
+        setShowSearchResult(false);
+      });
+  }, []);
+
+  useEffect(() => {
     const isToolbar = params.has("has_category_bar");
     setShowToolbar(isToolbar);
   }, [params]);
@@ -79,8 +90,8 @@ const Header: React.FC<IHeaderProps> = (props) => {
               <Image height={40} width={40} src="/svg/logo.svg" alt="Logo" />
               <h2 className="text-xl font-bold">VATTUMAY</h2>
             </Link>
-            <div className="w-9/12 outline-offset-2 outline-1 outline-begonia">
-              <div className="bg-anti-flash-white py-[13px] px-[15px] flex gap-5 rounded-xl w-full relative">
+            <div className="w-9/12">
+              <div className="bg-anti-flash-white py-[13px] px-[15px] flex gap-5 rounded-xl w-full relative hover:outline-begonia hover:outline-1">
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -114,7 +125,10 @@ const Header: React.FC<IHeaderProps> = (props) => {
                       leaveTo="opacity-0"
                       // afterLeave={() => setQuery("")}
                     >
-                      <Combobox.Options className="absolute left-0 p-[24px]  mt-[25px] w-full overflow-auto rounded-xl bg-lotion text-base shadow-lg focus:outline-none sm:text-sm">
+                      <Combobox.Options
+                        onClick={(e) => e.stopPropagation()}
+                        className="absolute left-0 p-[24px]  mt-[25px] w-full overflow-auto rounded-xl bg-lotion text-base shadow-lg focus:outline-none sm:text-sm"
+                      >
                         <div className="rounded-lg flex flex-col gap-[12px]">
                           {filteredData?.length > 0 ? (
                             filteredData?.map((product) => (
