@@ -25,6 +25,7 @@ const DetailProduct: React.FC<IDetailProduct> = (props) => {
   const { updateBreadcrump } = useSettingContext();
   const [contactForm, setContactForm] = useState(false);
   const [productInfo, setProductInfo] = useState<IProductField>({});
+  const [listFilter, setListFilter] = useState()
 
   useEffect(() => {
     if (
@@ -41,20 +42,11 @@ const DetailProduct: React.FC<IDetailProduct> = (props) => {
       getDetailProduct(props?.params?.slug as string).then((res) => {
         setProductInfo(res.data);
       });
-
-      // getSingleCategory(props.params?.category as string).then((category) => {
-      //   setCategory(category?.data);
-      // })
     }
   }, [props?.params]);
 
   useEffect(() => {
     updateBreadcrump && updateBreadcrump([
-      // {
-      //   href: `/san-pham/${category}`,
-      //   name: category?.title?.rendered,
-      //   active: true,
-      // },
       {
         href: `/san-pham/${productInfo?.acf?.sub_category?.acf?.category}/${productInfo?.acf?.sub_category?.acf?.code}`,
         name: productInfo?.acf?.sub_category?.post_title,
@@ -75,7 +67,7 @@ const DetailProduct: React.FC<IDetailProduct> = (props) => {
   return (
     <div className="container flex flex-col gap-20">
       <ProductInfo result={productInfo} handleOpenContact={handleOpenContact} />
-      <ProductDescription />
+      <ProductDescription result={productInfo} />
       <ContactForm
         modalOpen={contactForm}
         setModalOpen={setContactForm}

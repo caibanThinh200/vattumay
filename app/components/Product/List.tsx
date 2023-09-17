@@ -33,7 +33,7 @@ const List: React.FC<IListProps> = (props) => {
               )
             }
             // href={`/san-pham/${item?.acf?.sub_category?.acf?.category}/${item?.acf?.sub_category?.acf?.code}/${item?.acf?.code}`}
-            className="rounded-xl group transition-all overflow-hidden flex flex-col relative"
+            className="rounded-xl group transition-all overflow-hidden flex flex-col relative cursor-pointer"
           >
             <div className="h-[231px]">
               <Image

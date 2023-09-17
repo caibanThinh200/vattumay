@@ -31,7 +31,6 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   useEffect(() => {
     window.addEventListener("click", () => {
-      console.log(111);
       setShowSearchResult(false);
     });
     return () =>
@@ -56,14 +55,17 @@ const Header: React.FC<IHeaderProps> = (props) => {
     );
   }, [searchValue]);
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    let func;
-    clearTimeout(func);
-    func = setTimeout(() => {
-      setSearchValue(event.target.value);
-      setShowSearchResult(!!event.target.value);
-    }, 500);
-  };
+  const handleSearch = useCallback(
+    (event: React.ChangeEvent<HTMLInputElement>) => {
+      let func;
+      clearTimeout(func);
+      func = setTimeout(() => {
+        setSearchValue(event.target.value);
+        setShowSearchResult(!!event.target.value);
+      }, 500);
+    },
+    []
+  );
 
   const handleEnterSearch = useCallback(
     (e: React.KeyboardEvent<HTMLInputElement>) => {

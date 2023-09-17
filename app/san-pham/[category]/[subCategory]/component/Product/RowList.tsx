@@ -1,8 +1,12 @@
 import { FAKE_DATA } from "@/app/constant";
+import { IImageField } from "@/app/interface/category";
+import { IProductField } from "@/app/interface/product";
 import Image from "next/image";
 import Link from "next/link";
 
-interface IRowListProps {}
+interface IRowListProps {
+  result?: IProductField[];
+}
 
 const RowList: React.FC<IRowListProps> = (props) => {
   return (
@@ -17,29 +21,38 @@ const RowList: React.FC<IRowListProps> = (props) => {
           </tr>
         </thead>
         <tbody className="bg-lotion">
-          {FAKE_DATA.map((item) => (
-            <tr key={item.code} className="border-b border-bright-gray">
+          {(props.result as IProductField[]).map((item) => (
+            <tr key={item.acf?.code} className="border-b border-bright-gray">
               <td className="p-[16px]">
                 <Image
                   className="rounded-xl border border-bright-gray w-[84px] h-[84px] object-cover"
                   height={84}
                   width={84}
-                  src={item.url}
-                  alt={item.title}
+                  src={(item.acf?.image as IImageField[])[0]?.url as string}
+                  alt={(item.acf?.image as IImageField[])[0]?.alt as string}
                 />
               </td>
               <td className="p-[16px] w-4/12">
-                <Link
-                  href={`${item.categoryId}/${item.slug}`}
-                  className="text-[#3056D3]"
+                <p
+                  onClick={() =>
+                    window.open(`${item.acf?.sub_category?.ID}/${item.id}`)
+                  }
+                  className="text-[#3056D3] cursor-pointer"
                 >
-                  {item.title}
-                </Link>
+                  {item.title?.rendered}
+                </p>
               </td>
-              <td className="p-[16px] w-3/12">{item.title}</td>
+              <td className="p-[16px] w-3/12">{item.title?.rendered}</td>
               <td className="p-[16px]">
                 <div className="flex gap-[24px]">
-                  <div onClick={() => window.open(item.url)} className="flex flex-col items-center cursor-pointer">
+                  <div
+                    onClick={() =>
+                      window.open(
+                        (item.acf?.image as IImageField[])[0]?.url as string
+                      )
+                    }
+                    className="flex flex-col items-center cursor-pointer"
+                  >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="24"

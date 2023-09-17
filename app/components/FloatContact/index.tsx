@@ -87,7 +87,7 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
             height={32}
             width={32}
           />
-          <p className="font-bold">0858 5848 3821</p>
+          <p className="font-bold">0818 598 088</p>
         </div>
         <div
           ref={overlayRef}
@@ -130,7 +130,7 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
                 stroke-linejoin="round"
               />
             </svg>
-            <p className="font-bold">0858 5848 3821</p>
+            <p className="font-bold">0818 598 088</p>
           </div>
         </div>
       </div>

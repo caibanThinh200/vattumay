@@ -1,10 +1,14 @@
-interface ITableHeaderProps {}
+import { IProductField } from "@/app/interface/product";
+
+interface ITableHeaderProps {
+  result?: IProductField[]
+}
 
 const TableHeader: React.FC<ITableHeaderProps> = (props) => {
   return (
     <div className="p-[16px] flex justify-between bg-white items-center">
       <div>
-        <p className="text-[20px] font-bold">Danh sách sản phẩm (18)</p>
+        <p className="text-[20px] font-bold">Danh sách sản phẩm ({props.result?.length})</p>
       </div>
       <div className="flex gap-4 text-auto-metal-saurus">
         <div className="flex gap-2 p-[8px]">

@@ -32,7 +32,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
                 `/san-pham/${item?.acf?.sub_category?.acf?.category}/${item?.acf?.sub_category?.acf?.code}/${item?.id}`
               )
             }
-            className="rounded-xl overflow-hidden group flex flex-col relative"
+            className="rounded-xl overflow-hidden group flex flex-col relative cursor-pointer"
           >
             <div className="rounded-xl text-white absolute px-[12px] py-[6px] bg-begonia-gradient top-5 right-5 z-10">
               <p>Giảm giá 30%</p>
@@ -51,7 +51,7 @@ const ListDiscountProduct: React.FC<IListDiscountProductProps> = (props) => {
                 {item.title?.rendered}
               </p>
               <svg
-                className="w-3/12"
+                className="w-3/12 cursor-pointer"
                 onClick={(e) => props.handlePurchaseProduct(e, item)}
                 width="32"
                 height="32"

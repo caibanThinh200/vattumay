@@ -196,16 +196,16 @@ const ContactForm: React.FC<IContactFormProps> = ({
                             </p>
                           </div>
                           <div className="lg:w-6/12 bg-white rounded-md border border-[#D1D5DB] overflow-hidden items-center grid grid-cols-3 h-fit py-[10px]">
-                            <button type="button" onClick={handleIncreament}>
-                              +
-                            </button>
-                            <p className="text-center">{quantity}</p>
                             <button
                               type="button"
                               disabled={quantity === 1}
                               onClick={handleDecreament}
                             >
                               -
+                            </button>
+                            <p translate="no" className="text-center">{quantity}</p>
+                            <button type="button" onClick={handleIncreament}>
+                              +
                             </button>
                           </div>
                         </div>

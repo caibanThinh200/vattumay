@@ -133,7 +133,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                                   <Link
                                     href={
                                       `/san-pham/${menuItem.id}/${
-                                        item.acf!?.code
+                                        item?.id
                                       }` as string
                                     }
                                     className={clsx(

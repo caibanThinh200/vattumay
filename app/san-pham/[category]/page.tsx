@@ -1,8 +1,10 @@
 "use client";
 
+import { getAllProducts } from "@/app/action";
 import { CATEGORIES, SUB_CATEGORIES } from "@/app/constant";
 import { useSettingContext } from "@/app/context/setting";
 import { ISubCategoryField } from "@/app/interface/category";
+import { IProductField } from "@/app/interface/product";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,8 +20,12 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   const path = usePathname();
   const { updateBreadcrump } = useSettingContext();
   const [subCategories, setSubCategories] = useState<ISubCategoryField[]>([]);
+  const [allProduct, setAllProduct] = useState<IProductField[]>([]);
 
   useEffect(() => {
+    getAllProducts({ per_page: 100 }).then((res) => {
+      setAllProduct(res?.data);
+    });
     if (params?.category) {
       axios
         .get(`${process.env.NEXT_PUBLIC_API_URL}/sub_category`, {
@@ -41,14 +47,15 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
           }
         )
         .then((res) => {
-          updateBreadcrump && updateBreadcrump([
-            { href: "/danh-muc", name: "Danh mục sản phẩm" },
-            {
-              href: `/san-pham/${res.data?.id}`,
-              name: res.data?.title?.rendered,
-              active: true,
-            },
-          ]);
+          updateBreadcrump &&
+            updateBreadcrump([
+              { href: "/danh-muc", name: "Danh mục sản phẩm" },
+              {
+                href: `/san-pham/${res.data?.id}`,
+                name: res.data?.title?.rendered,
+                active: true,
+              },
+            ]);
         });
     }
   }, [params]);
@@ -59,7 +66,7 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
         <div className="grid lg:grid-cols-4 2xl:grid-cols-5 sm:grid-cols-3 grid-col-2 gap-5">
           {subCategories.map((category) => (
             <Link
-              href={`${path}/${category?.acf?.code}`}
+              href={`${path}/${category?.id}`}
               key={category?.acf?.code}
               style={{
                 boxShadow: "0px 0px 8px 0px rgba(53, 53, 53, 0.08);",
@@ -86,7 +93,15 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
                 <p className="font-bold text-[20px]">
                   {category.title?.rendered}
                 </p>
-                <p className="font-light">0 Product</p>
+                <p className="font-light">
+                  {
+                    allProduct.filter(
+                      (product) =>
+                        product.acf?.sub_category?.ID === category?.id
+                    )?.length
+                  }{" "}
+                  sản phẩm
+                </p>
               </div>
             </Link>
           ))}

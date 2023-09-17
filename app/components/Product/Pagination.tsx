@@ -133,7 +133,7 @@ const ArchivePagination: React.FC<IArchivePaginationProps> = (props) => {
         </button>
       </div>
       <div className="container hidden sm:flex sm:flex-1 sm:items-center sm:justify-end">
-        <nav className="rounded-md" aria-label="Pagination">
+        <nav translate="no" className="rounded-md" aria-label="Pagination">
           <Pagination
             total={props.total}
             pageSize={props.postPerPage}
