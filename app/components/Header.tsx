@@ -86,14 +86,19 @@ const Header: React.FC<IHeaderProps> = (props) => {
   return (
     <div className="fixed left-0 w-full top-0 z-40">
       <div className="bg-lotion py-[12px] border-2 border-bright-gray">
-        <div className="container mx-auto flex justify-between gap-10">
-          <div className="flex gap-5 w-7/12">
+        <div className="container mx-auto flex justify-between gap-2">
+          <div className="flex gap-5 w-8/12">
             <Link href={"/"} className="flex gap-5 items-center w-4/12">
               <Image height={40} width={40} src="/svg/logo.svg" alt="Logo" />
               <h2 className="text-xl font-bold">VATTUMAY</h2>
             </Link>
-            <div className="w-9/12">
-              <div className="bg-anti-flash-white py-[13px] px-[15px] flex gap-5 rounded-xl w-full relative hover:outline-begonia hover:outline-1">
+            <div className="w-full">
+              <div
+                className={clsx(
+                  "bg-anti-flash-white py-[13px] px-[15px] flex gap-5 rounded-xl w-full relative transition-all",
+                  showSearchResult && "border border-begonia"
+                )}
+              >
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -111,9 +116,13 @@ const Header: React.FC<IHeaderProps> = (props) => {
                     />
                   </svg>
                 </div>
-                <div className="w-10/12">
+                <div className="w-full">
                   <Combobox>
                     <Combobox.Input
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setShowSearchResult(true);
+                      }}
                       onKeyDown={handleEnterSearch}
                       onChange={handleSearch}
                       className="text-auto-metal-saurus bg-inherit w-full outline-none"
@@ -127,49 +136,127 @@ const Header: React.FC<IHeaderProps> = (props) => {
                       leaveTo="opacity-0"
                       // afterLeave={() => setQuery("")}
                     >
-                      <Combobox.Options
-                        onClick={(e) => e.stopPropagation()}
-                        className="absolute left-0 p-[24px]  mt-[25px] w-full overflow-auto rounded-xl bg-lotion text-base shadow-lg focus:outline-none sm:text-sm"
-                      >
-                        <div className="rounded-lg flex flex-col gap-[12px]">
-                          {filteredData?.length > 0 ? (
-                            filteredData?.map((product) => (
+                      {searchValue ? (
+                        <Combobox.Options
+                          onClick={(e) => e.stopPropagation()}
+                          className="absolute left-0 p-[24px]  mt-[25px] w-full overflow-auto rounded-xl bg-lotion text-base shadow-lg focus:outline-none sm:text-sm"
+                        >
+                          <div className="rounded-lg flex flex-col gap-[12px]">
+                            {filteredData?.length > 0 ? (
+                              filteredData?.map((product) => (
+                                <div
+                                  onClick={() =>
+                                    window.open(
+                                      `/san-pham/${product?.acf?.sub_category?.acf?.category}/${product?.acf?.sub_category?.acf?.code}/${product?.id}`
+                                    )
+                                  }
+                                  key={product.id}
+                                  className="flex gap-4 items-center rounded-lg p-[12px] bg-anti-flash-white border border-anti-flash-white hover:bg-begonia-gradient hover:text-white transition-all cursor-pointer"
+                                >
+                                  <div className="w-[44px]">
+                                    <Image
+                                      width={44}
+                                      height={44}
+                                      src={
+                                        (product.acf?.image as IImageField[])[0]
+                                          ?.url as string
+                                      }
+                                      alt={
+                                        (product.acf?.image as IImageField[])[0]
+                                          ?.alt as string
+                                      }
+                                      className="object-cover rounded-xl w-[44px] h-[44px] "
+                                    />
+                                  </div>
+                                  <div className="flex flex-col gap-2">
+                                    <p className="line-clamp-1 text-[14px] font-bold overflow-hidden">
+                                      {product.title?.rendered}
+                                    </p>
+                                  </div>
+                                </div>
+                              ))
+                            ) : (
+                              <div>Không tìm thấy sản phẩm</div>
+                            )}
+                          </div>
+                        </Combobox.Options>
+                      ) : (
+                        <div className="absolute w-[120%] rounded-lg shadow-xl flex flex-col gap-5 left-0 p-[24px] bg-lotion top-[64px]">
+                          <p className="text-[#4B5563] font-semibold">
+                            Các sản phẩm đáng chú ý
+                          </p>
+                          <div className="grid grid-cols-3 gap-5">
+                            {filteredData?.slice(0, 3).map((item) => (
                               <div
+                                key={item.id}
+                                style={{
+                                  boxShadow:
+                                    "0px 0px 8px 0px rgba(53, 53, 53, 0.08)",
+                                }}
                                 onClick={() =>
                                   window.open(
-                                    `/san-pham/${product?.acf?.sub_category?.acf?.category}/${product?.acf?.sub_category?.acf?.code}/${product?.id}`
+                                    `/san-pham/${item?.acf?.sub_category?.acf?.category}/${item?.acf?.sub_category?.acf?.code}/${item?.id}`
                                   )
                                 }
-                                key={product.id}
-                                className="flex gap-4 items-center rounded-lg p-[12px] bg-anti-flash-white border border-anti-flash-white hover:bg-begonia-gradient hover:text-white transition-all cursor-pointer"
+                                // href={`/san-pham/${item?.acf?.sub_category?.acf?.category}/${item?.acf?.sub_category?.acf?.code}/${item?.acf?.code}`}
+                                className="rounded-xl group transition-all overflow-hidden flex flex-col relative"
                               >
-                                <div className="w-[44px]">
+                                <div className="h-[231px]">
                                   <Image
-                                    width={44}
-                                    height={44}
+                                    className="w-full h-full object-cover"
                                     src={
-                                      (product.acf?.image as IImageField[])[0]
+                                      (item.acf?.image as IImageField[])[0]
                                         ?.url as string
                                     }
                                     alt={
-                                      (product.acf?.image as IImageField[])[0]
+                                      (item.acf?.image as IImageField[])[0]
                                         ?.alt as string
                                     }
-                                    className="object-cover rounded-xl w-[44px] h-[44px] "
+                                    height={315}
+                                    width={300}
                                   />
                                 </div>
-                                <div className="flex flex-col gap-2">
-                                  <p className="line-clamp-1 text-[14px] font-bold overflow-hidden">
-                                    {product.title?.rendered}
+                                <div className="p-[14px] group-hover:bg-begonia-gradient gap-3 transition-all group-hover:text-white flex items-center justify-between">
+                                  <p
+                                    style={{ wordBreak: "break-word" }}
+                                    className="w-full font-bold line-clamp-2"
+                                  >
+                                    {item.title?.rendered}
                                   </p>
+                                  <svg
+                                    className="w-3/12 hidden group-hover:block cursor-pointer"
+                                    // onClick={(e) =>
+                                    //   handlePurchaseProduct(e, item)
+                                    // }
+                                    width="32"
+                                    height="32"
+                                    viewBox="0 0 32 32"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                  >
+                                    <path
+                                      className="group-hover:stroke-white transition-all"
+                                      d="M8.98816 8.98816C8.67559 9.30072 8.5 9.72464 8.5 10.1667V11C8.5 17.9033 14.0967 23.5 21 23.5H21.8333C22.2754 23.5 22.6993 23.3244 23.0118 23.0118C23.3244 22.6993 23.5 22.2754 23.5 21.8333V19.1008C23.5 18.9259 23.445 18.7553 23.3427 18.6134C23.2404 18.4714 23.096 18.3653 22.93 18.31L19.1858 17.0617C18.9956 16.9984 18.7888 17.0059 18.6036 17.0827C18.4184 17.1596 18.2671 17.3006 18.1775 17.48L17.2358 19.3608C15.1954 18.4389 13.5611 16.8046 12.6392 14.7642L14.52 13.8225C14.6994 13.7329 14.8404 13.5816 14.9173 13.3964C14.9941 13.2112 15.0016 13.0044 14.9383 12.8142L13.69 9.07C13.6348 8.90413 13.5287 8.75984 13.387 8.65754C13.2452 8.55525 13.0748 8.50013 12.9 8.5H10.1667C9.72464 8.5 9.30072 8.67559 8.98816 8.98816Z"
+                                      stroke="url(#paint0_linear_209_5018)"
+                                      stroke-linecap="round"
+                                      stroke-linejoin="round"
+                                    />
+                                    <rect
+                                      className="group-hover:stroke-white transition-all"
+                                      x="0.5"
+                                      y="0.5"
+                                      width="31"
+                                      height="31"
+                                      rx="5.5"
+                                      stroke="url(#paint1_linear_209_5018)"
+                                    />
+                                  </svg>
                                 </div>
                               </div>
-                            ))
-                          ) : (
-                            <div>Không tìm thấy sản phẩm</div>
-                          )}
+                            ))}
+                          </div>
                         </div>
-                      </Combobox.Options>
+                      )}
                     </Transition>
                   </Combobox>
                 </div>

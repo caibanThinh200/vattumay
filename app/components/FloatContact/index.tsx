@@ -110,7 +110,8 @@ const FloatContact: React.FC<IFloatContactProps> = (props) => {
             <p className="font-bold">Messenger</p>
           </div>
           <div
-            className="border-2 bg-white border-begonia p-[12px] rounded-xl flex gap-3 w-full items-center"
+            onClick={() => window.open("tel:0818598088")}
+            className="border-2 bg-white border-begonia p-[12px] rounded-xl flex gap-3 w-full items-center cursor-pointer"
             style={{
               boxShadow: "0px 0px 10px 0px rgba(231, 91, 111, 0.15)",
             }}
