@@ -19,7 +19,7 @@ const nextConfig = {
         },
         {
           protocol: 'https',
-          hostname: 'vattumay.com'
+          hostname: 'cms.vattumay.com'
         }
       ],
   },
