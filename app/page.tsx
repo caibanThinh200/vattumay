@@ -49,7 +49,7 @@ export default function Home(props: IHomeProps) {
       setCategoryData(res.data);
     });
 
-    getSubCategoriesData({ per_page: 900 }).then((res) => {
+    getSubCategoriesData({ per_page: 100 }).then((res) => {
       setSubCategories(res.data);
     });
 
