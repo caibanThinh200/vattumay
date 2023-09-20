@@ -47,16 +47,16 @@ const ProductFilter: React.FC<IProductFilter> = (props) => {
     getAllProducts({
       sub_category: props.params?.subCategory,
       filter_params: filterParams?.id,
-      per_page: 100,
+      per_page: 900,
     }).then((res) => {
       setResult(res?.data);
     });
 
-    getFilterWidget({ per_page: 100 }).then((res) => {
+    getFilterWidget({ per_page: 900 }).then((res) => {
       setFilters(res.data);
     });
 
-    getFilterValues({ per_page: 100 }).then((res) => {
+    getFilterValues({ per_page: 900 }).then((res) => {
       setFilterValues(res.data);
     });
   }, [props.params, filterParams]);

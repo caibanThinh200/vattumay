@@ -36,7 +36,7 @@ const SearchPage: React.FC<ISearchProps> = (props) => {
   }, [params]);
 
   useEffect(() => {
-    getAllProducts({ per_page: 100, search: params.get("t") }).then((res) => {
+    getAllProducts({ per_page: 900, search: params.get("t") }).then((res) => {
       setFilteredProduct(res.data);
     });
   }, [params]);

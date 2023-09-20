@@ -23,7 +23,7 @@ const CategoriesPage: React.FC<ICategoriesProps> = ({ params }) => {
   const [allProduct, setAllProduct] = useState<IProductField[]>([]);
 
   useEffect(() => {
-    getAllProducts({ per_page: 100 }).then((res) => {
+    getAllProducts({ per_page: 900 }).then((res) => {
       setAllProduct(res?.data);
     });
     if (params?.category) {
