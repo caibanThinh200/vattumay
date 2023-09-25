@@ -52,11 +52,11 @@ const ProductFilter: React.FC<IProductFilter> = (props) => {
       setResult(res?.data);
     });
 
-    getFilterWidget({ per_page: 900 }).then((res) => {
+    getFilterWidget({}).then((res) => {
       setFilters(res.data);
     });
 
-    getFilterValues({ per_page: 900 }).then((res) => {
+    getFilterValues({}).then((res) => {
       setFilterValues(res.data);
     });
   }, [props.params, filterParams]);

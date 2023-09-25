@@ -96,10 +96,10 @@ export default function Home(props: IHomeProps) {
       <div className="w-9/12 flex flex-col gap-[44px]">
         <Banner />
         <HightLight />
-        <ListDiscountProduct
+        {/* <ListDiscountProduct
           productData={productData?.slice(0, 4)}
           handlePurchaseProduct={handlePurchaseProduct}
-        />
+        /> */}
         <List
           productData={productData.slice(pageIndex.start, pageIndex.end)}
           handlePurchaseProduct={handlePurchaseProduct}
