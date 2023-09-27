@@ -46,6 +46,11 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   useEffect(() => {
     const lang = Cookies.get("lang")?.toLowerCase() || "vi";
+    if (lang === "vi") {
+      setTimeout(() => {
+        Cookies.remove("googtrans");
+      }, 200);
+    }
     setCurrentLang(lang);
   }, []);
 
