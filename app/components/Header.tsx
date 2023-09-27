@@ -299,7 +299,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
             <div className="flex items-center gap-2 rounded-xl border-2 border-bright-gray bg-anti-flash-white p-[5px]">
               <Link
                 onClick={(e) => handleChangeLanguage("/en/vi", "VI")}
-                href={"#googtrans(vi)"}
+                href={"/"}
                 className={clsx(
                   "rounded-lg transition-all py-[10px] px-[7px] hover:border-begonia",
                   currentLang === "vi" && "border-begonia border"
@@ -323,7 +323,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
               </Link>
               <Link
                 onClick={(e) => handleChangeLanguage("/en/en", "EN")}
-                href={`#googtrans(en)`}
+                href={`/`}
                 className={clsx(
                   "rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]",
                   currentLang === "en" && "border border-begonia"

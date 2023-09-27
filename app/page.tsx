@@ -65,14 +65,12 @@ export default function Home(props: IHomeProps) {
   useEffect(() => {
     const page = params.get("page")
       ? parseInt(params.get("page") as string)
-      : 0;
+      : 1;
     if (page && !isNaN(page)) {
       setPageIndex({
         start: (page - 1) * 40,
         end: page * 40,
       });
-    } else {
-      router.push(`${pathname}?page=1`);
     }
   }, [params, pathname, router]);
 
@@ -85,8 +83,8 @@ export default function Home(props: IHomeProps) {
     },
     [openContact, productInfo]
   );
-  
-  const subCategoryOrder = [''];
+
+  const subCategoryOrder = [""];
 
   return (
     <div className="flex gap-10">
