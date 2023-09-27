@@ -317,7 +317,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
                 </svg>
               </Link>
               <Link
-                onClick={(e) => handleChangeLanguage("/en/en", "EN")}
+                onClick={(e) => handleChangeLanguage("/vi/en", "EN")}
                 href={`/`}
                 className={clsx(
                   "rounded-lg border border-anti-flash-white hover:border-begonia transition-all py-[10px] px-[7px]",
