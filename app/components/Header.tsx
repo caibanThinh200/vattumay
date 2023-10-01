@@ -84,7 +84,7 @@ const Header: React.FC<IHeaderProps> = (props) => {
 
   const handleChangeLanguage = useCallback((language: string, lang: string) => {
     Cookies.set("lang", lang);
-    Cookies.set("googtrans", language);
+    Cookies.set("googtrans", language, { priority: "high" });
 
     window.location.reload();
   }, []);

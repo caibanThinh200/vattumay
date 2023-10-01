@@ -2,12 +2,10 @@ import { IImageField } from "@/app/interface/category";
 import { IProductField } from "@/app/interface/product";
 import { Dialog, Transition } from "@headlessui/react";
 import Image from "next/image";
-import { Fragment, useCallback, useEffect, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
-import { utils, writeFile, read } from "xlsx";
 import moment from "moment";
 import axios from "axios";
-import parse from "html-react-parser";
 
 interface IContactFormProps {
   modalOpen: boolean;
@@ -203,7 +201,9 @@ const ContactForm: React.FC<IContactFormProps> = ({
                             >
                               -
                             </button>
-                            <p translate="no" className="text-center">{quantity}</p>
+                            <p translate="no" className="text-center">
+                              {quantity}
+                            </p>
                             <button type="button" onClick={handleIncreament}>
                               +
                             </button>
