@@ -23,11 +23,10 @@ const Page = () => {
     let sliceProduct: Array<Array<IProductField>> = [];
     let currentSlice: IProductField[] = [];
     products.forEach((product, index) => {
-      if ((index + 1) % 4 === 0) {
+      currentSlice.push(product);
+      if (currentSlice.length === 3) {
         sliceProduct.push(currentSlice);
         currentSlice = [];
-      } else {
-        currentSlice.push(product);
       }
     });
     setProductSlice(sliceProduct);

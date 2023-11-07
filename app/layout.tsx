@@ -110,6 +110,10 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   return (
     <html>
+      <head>
+        <title>Vật tư máy</title>
+        <link rel="icon" type="image/x-icon" href="/image/favicon.png"></link>
+      </head>
       <body
         style={{ paddingTop }}
         className={clsx(inter.className, "bg-ghost-white")}

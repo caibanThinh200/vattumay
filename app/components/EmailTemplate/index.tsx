@@ -22,21 +22,19 @@ const EmailTemplate: React.FC<IEmailTemplate> = ({ products }) => {
           marginBottom: 50,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            gap: 5,
-            alignItems: "center",
-            width: "33%",
-          }}
-        >
-          <Image
+        <div>
+          <img
+            style={{
+              display: "inline",
+              marginRight: 10,
+              verticalAlign: "middle",
+            }}
             height={40}
             width={40}
-            src="https://vattumay.com/images/logo.jpeg"
+            src="https://vattumay.com/image/logo.jpeg"
             alt="Logo"
           />
-          <h2 style={{ fontWeight: 700 }}>VATTUMAY</h2>
+          <h2 style={{ fontWeight: 700, display: "inline" }}>VATTUMAY</h2>
         </div>
       </div>
       <div
@@ -85,6 +83,7 @@ const EmailTemplate: React.FC<IEmailTemplate> = ({ products }) => {
                     borderRadius: 30,
                     overflow: "hidden",
                     margin: 16,
+                    width: '33%',
                     textAlign: "center",
                     // padding: 16,
                     position: "relative",
@@ -150,22 +149,19 @@ const EmailTemplate: React.FC<IEmailTemplate> = ({ products }) => {
           padding: 60,
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            gap: 5,
-            alignItems: "center",
-            // width: "33%",
-            justifyContent: "center",
-          }}
-        >
-          <Image
+        <div>
+          <img
+            style={{
+              display: "inline",
+              marginRight: 10,
+              verticalAlign: "middle",
+            }}
             height={40}
             width={40}
-            src="https://vattumay.com/images/logo.jpeg"
+            src="https://vattumay.com/image/logo.jpeg"
             alt="Logo"
           />
-          <h2 style={{ fontWeight: 700, color: "#fff" }}>VATTUMAY</h2>
+          <h2 style={{ fontWeight: 700, color: "#fff", display: 'inline' }}>VATTUMAY</h2>
         </div>
         <div
           style={{
@@ -179,6 +175,7 @@ const EmailTemplate: React.FC<IEmailTemplate> = ({ products }) => {
             style={{
               display: "flex",
               gap: 20,
+              marginRight: 40,
             }}
             className="flex gap-2"
           >

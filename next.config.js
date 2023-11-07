@@ -20,6 +20,10 @@ const nextConfig = {
         {
           protocol: 'https',
           hostname: 'cms.vattumay.com'
+        },
+        {
+          protocol: 'https',
+          hostname: 'vattumay.com'
         }
       ],
   },
