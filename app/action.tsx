@@ -7,6 +7,7 @@ export const getCategoriesData = async () => {
     params: {
       order: "asc",
       acf_format: "standard",
+      per_page: 100,
     },
   });
   // .then((res) => {
@@ -63,7 +64,7 @@ export const getDetailProduct = async (id: string) => {
 export const getFilterWidget = async (filter: any) => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/filter`, {
     params: {
-      order: 'asc',
+      order: "asc",
       acf_format: "standard",
       ...filter,
     },
@@ -73,7 +74,7 @@ export const getFilterWidget = async (filter: any) => {
 export const getFilterValues = async (filter: any) => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/filter_param`, {
     params: {
-      order: 'asc',
+      order: "asc",
       acf_format: "standard",
       ...filter,
     },

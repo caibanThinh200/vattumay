@@ -63,10 +63,10 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
           />
         </Link>
       </div>
-      <div className="px-[24px] relative">
+      <div className="m-[12px] px-[24px] rounded-xl relative bg-anti-flash-white">
         <Menu>
           {({ open }) => (
-            <div>
+            <div className="max-h-[70vh] overflow-y-scroll overflow-x-visible scroll-hover">
               {props.result.length > 0 ? (
                 props.result.map((menuItem, index) => (
                   <div
@@ -132,9 +132,7 @@ const Sidebar: React.FC<ISidebarProps> = (props) => {
                                 {({ active }) => (
                                   <Link
                                     href={
-                                      `/san-pham/${menuItem.id}/${
-                                        item?.id
-                                      }` as string
+                                      `/san-pham/${menuItem.id}/${item?.id}` as string
                                     }
                                     className={clsx(
                                       "text-white font-bold py-2 text-sm border-b border-dashed border-b-white"
