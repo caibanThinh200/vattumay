@@ -5,7 +5,7 @@ import axios from "axios";
 export const getCategoriesData = async () => {
   return axios.get(`${process.env.NEXT_PUBLIC_API_URL}/category`, {
     params: {
-      order: "asc",
+      order: "desc",
       acf_format: "standard",
       per_page: 100,
     },
