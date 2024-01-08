@@ -321,7 +321,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                         height={32}
                         width={32}
                       />
-                      <span>0858 543 323</span>
+                      <span>0818 598 088</span>
                     </div>
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -349,7 +349,7 @@ const ContactForm: React.FC<IContactFormProps> = ({
                           stroke-linejoin="round"
                         />
                       </svg>
-                      <span>0858 543 323</span>
+                      <span>0818 598 088</span>
                     </div>
                   </div>
                 </Dialog.Panel>
